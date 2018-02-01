@@ -1,15 +1,12 @@
-
-
-
 import java.util.Scanner; //Importing the scanner tool 
-
 import java.text.DecimalFormat; //Importing the decimal tool 
-
+///LOUIS NYUGEN CARLA GRIFFITHS CENG210P PROJECT // 
 public class Project
 {
 	public static String About = "A", EnterVotes = "V", ShowProject = "S", Quit = "Q", option; //Declaring the strings representing the menu option buttons
-	public static String FirstMember, SecondMember, ThirdMember, ProjectName; //Declaring the strings representing the names of the members and the project name
 	public static int NumberOfMember; //Entering the number of members
+	public static String[] TeamMember; //Declaring the strings representing the names of the members and the project name
+	public static String ProjectName; // declaring the project name as a string
 	public static boolean CorrectInput, ShowMenu; //Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
     static Scanner scan = new Scanner(System.in); // importing the scanner tool
     DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
@@ -41,7 +38,7 @@ public class Project
           {
               About();              
           }
-      	  else if (option.equalsIgnoreCase("C") == true)
+      	  else if (option.equalsIgnoreCase("C") == true) //If C is true run Create Project()
       	  {
       		  CreateProject();
       	  }
@@ -106,10 +103,12 @@ public class Project
     	ProjectName = scan.nextLine();
     	System.out.println("Enter the number of team members: \n");
     	NumberOfMember = scan.nextInt();
+    	TeamMember = new String[NumberOfMember];
     	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
     	{
     		//Statement of variable allocation to corresponding member position
     		System.out.println("\tEnter the name of team member " + MemberCount);
+    		TeamMember[NumberOfMember -1] = scan.nextLine();
     	}
     	System.out.print("Press any key to return to the main menu: ");
     	String DummyInput = scan.nextLine(); //This is a dummy variable where the input is never used again
