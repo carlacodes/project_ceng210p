@@ -138,9 +138,9 @@ public class Project
 //--------------------------------------------------------------------------------
     public static void allVariables()
     {
-    	System.out.println("Number of members: " + NumberOfMember);
-    	System.out.println("Project name: " + ProjectName);
-    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++)
+    	System.out.println("Number of members: " + NumberOfMember); //Returning the input for the number of members
+    	System.out.println("Project name: " + ProjectName); //Returning the project name 
+    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
     	{
     		System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
     	}
