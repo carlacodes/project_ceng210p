@@ -1,6 +1,6 @@
 ///----------------------------------------------
 ///
-///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT
+///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT, DELIVERABLE 1
 ///
 ///----------------------------------------------
 import java.util.Scanner; 			//Importing the scanner tool 
