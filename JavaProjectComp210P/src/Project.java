@@ -68,7 +68,7 @@ public class Project
       		  CorrectInput = false;
       	  }
       }
-      while (CorrectInput == false || ShowMenu == true); //Run MenuText() while either the CorrectInput is false or ShowMenu is ture 
+      while (CorrectInput == false || ShowMenu == true); //Run MenuText() while either the CorrectInput is false or ShowMenu is true 
     }
           
 //----------------------------------------------
@@ -78,7 +78,7 @@ public class Project
     {
     	CorrectInput = true; 	//Boolean indicating this a correct input type 
     	ShowMenu = false; 		//End the show menu, do not show menu text
-    	System.out.println("\tThis is a program designed to assign grades for a project based on each member's participation developed by Carla Griffiths and Louis Nguyen. ");    	
+    	System.out.println("\tThis is a program designed to assign grades for a project based on each member's \n \tparticipation developed by Carla Griffiths and Louis Nguyen. ");    	
     	ShowMenu=true; 			//this was added to avoid a dead-end although not explicitly mentioned in the brief
     }
 
@@ -89,7 +89,7 @@ public class Project
     {
     	CorrectInput = true; 	//Boolean indicating correct input
     	ShowMenu = true; 		//Still show the menu  
-    	allVariables();
+    	allVariables(); 		//Run the allVariables method 
     }
     
 //----------------------------------------------
