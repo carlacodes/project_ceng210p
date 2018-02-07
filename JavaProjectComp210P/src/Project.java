@@ -37,11 +37,11 @@ public class Project
     	  System.out.println("\n\n\tAbout\t\t(A)"); 	//Giving Information About the Program 
     	  System.out.println("\tCreate Project\t(C)"); 	//Create a new project
           System.out.println("\tEnter Votes\t(V)"); 	//Enter Votes
-          System.out.println("\tShow Project\t(S)"); 	//show project text 
-          System.out.println("\tQuit\t\t(Q)"); 			//quit option 
-          System.out.print("\n\tPlease choose an option: "); //printing out each menu option      
-    	  char input = scan.next().charAt(0);  			//asking user to input a character
-      	  option = Character.toString(input);
+          System.out.println("\tShow Project\t(S)"); 	//Show project text 
+          System.out.println("\tQuit\t\t(Q)"); 			//Quit option 
+          System.out.print("\n\tPlease choose an option: "); //Printing out each menu option      
+    	  char input = scan.next().charAt(0);  			//Asking user to input a character
+      	  option = Character.toString(input);			//Converting from characters to string 
       	  if (option.equalsIgnoreCase("A") == true) 	//If A or a is true, run About()
           {
               About();              
@@ -50,7 +50,7 @@ public class Project
       	  {
       		  CreateProject();
       	  }
-      	  else if (option.equalsIgnoreCase("V") == true) //If V or vis true, run EnterVotes()
+      	  else if (option.equalsIgnoreCase("V") == true) //If V or v is true, run EnterVotes()
       	  {
       		  EnterVotes();      		  
       	  }
@@ -68,7 +68,7 @@ public class Project
       		  CorrectInput = false;
       	  }
       }
-      while (CorrectInput == false || ShowMenu == true);
+      while (CorrectInput == false || ShowMenu == true); //Run MenuText() while either the CorrectInput is false or ShowMenu is ture 
     }
           
 //----------------------------------------------
@@ -88,7 +88,8 @@ public class Project
     public static void ShowProject()
     {
     	CorrectInput = true; 	//Boolean indicating correct input
-    	ShowMenu = true; 		//Still show the menu    	
+    	ShowMenu = true; 		//Still show the menu  
+    	allVariables();
     }
     
 //----------------------------------------------
