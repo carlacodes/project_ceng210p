@@ -15,34 +15,15 @@ import java.util.Scanner;
 	    	//Declaration of StartMenu(): listing Menu Options and equalsIgnoreCase to accept either upper or lower case
 	        //----------------------------------------------
 	    	MenuStart call = new MenuStart();
+	    	ShowProject call1 = new ShowProject();
 	    	
-	    
-	    	///////////////////////////////////////////////////////////
-	    	
-	    	//----------------
 	    	//----------------------------------------------
-	    	//Declaration of MenuStart Private Class: listing Menu Options and equalsIgnoreCase to accept either upper or lower case
-	        //----------------------------------------------
-	    	
-	        private class MenuStart{ 
-			private MenuStart()    //CHANGED THIS TO A CONSTRUCTOR ASK LOUIS
-	    	    {          
-	    	      Scanner scan = new Scanner(System.in); 	
-	    	      System.out.println(); 					
-	    	      System.out.print("\nWelcome to Splitit ");
-	    	      do
-	    	      {
-	    	    	  printMenu();
-	    	    	  char input = scan.next().charAt(0);  			//Asking user to input a character
-	    	      	  option = Character.toString(input);			//Converting from characters to string 
-	    	      	  checkInput(option);    	      	  
-	    	      }
-	    	      while (CorrectInput == false || ShowMenu == true); //Run StartMenu() while either the CorrectInput is false or ShowMenu is true 
-	    	    }
-	      //----------------------------------------------
         	//Declaration of checkInput(String OneInput) method
         	//----------------------------------------------
-    	    private void checkInput(String OneInput)
+	    	//NEW SHOW PROJECT CLASS //     	    
+	    	
+    	
+	    	public void checkInput(String OneInput)
     	    {
     	    	if (OneInput.equalsIgnoreCase("A") == true) 	
   	          {
@@ -54,12 +35,17 @@ import java.util.Scanner;
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("V") == true) 
   	      	  {
-  	      		  EnterVotes();      		  
+  	      		  EnterVotes();
+  	      		  
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("S") == true) 
-  	      	  {
-  	      		  ShowProject();      		  
-  	      	  }
+    	      	  {
+    	    		ShowProject call1 = new ShowProject();
+    	    		allVariables();
+    	      		 
+    	      	  }
+      	    	
+    	    	
     	    	else if (OneInput.equalsIgnoreCase("Q") == true) 
   	      	  {
   	      		  Quit();      		  
@@ -70,6 +56,32 @@ import java.util.Scanner;
   	      		  CorrectInput = false;
   	      	  }
     	    }
+	    
+	    	
+	    	
+	    	//----------------
+	    	//----------------------------------------------
+	    	//Declaration of MenuStart Private Class: listing Menu Options and equalsIgnoreCase to accept either upper or lower case
+	        //----------------------------------------------
+	    	
+	       
+	    	//NEW CLASS--MENU START// 
+	    	private class MenuStart{ 
+			private MenuStart()    //CHANGED THIS TO A CONSTRUCTOR ASK LOUIS
+	    	    {          
+	    	      //Scanner scan = new Scanner(System.in); 	
+	    	      System.out.println(); 					
+	    	      System.out.print("\nWelcome to Splitit ");
+	    	      do
+	    	      {
+	    	    	  printMenu();
+	    	    	  char input = scan.next().charAt(0);  			//Asking user to input a character
+	    	      	  option = Character.toString(input);			//Converting from characters to string 
+	    	      	  checkInput(option);    	      	  
+	    	      }
+	    	      while (CorrectInput == false || ShowMenu == true); //Run StartMenu() while either the CorrectInput is false or ShowMenu is true 
+	    	    }
+	      
     	    private void printMenu()
     	    {
     	    	System.out.println("\n\n\tAbout\t\t(A)"); 	
@@ -81,8 +93,6 @@ import java.util.Scanner;
     	    }
     	          
 	    	}
-	    	   
-	        
 	        
 	        
 	    	//----------------------------------------------
@@ -92,19 +102,8 @@ import java.util.Scanner;
 	    	    {
 	    	    	System.out.println("\tThis is a program designed to assign grades for a project based on each member's \n \tparticipation developed by Carla Griffiths and Louis Nguyen. ");    	
 	    	    }  
-	        
-
-	    	//----------------------------------------------
-	    	//Declaration of ShowProject()
-	    	//----------------------------------------------    
-	    	    public void ShowProject()
-	    	    {
-	    	    	CorrectInput = true; 	
-	    	    	ShowMenu = true; 		
-	    	    	allVariables(); 		//Run the allVariables method 
-	    	    }
 	    	    
-		    	//----------------------------------------------
+	    	  //----------------------------------------------
 		    	//Declaration of EnterVotes()
 		    	//----------------------------------------------    
 	    	    public void EnterVotes()
@@ -149,7 +148,8 @@ import java.util.Scanner;
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------
-	    	    public void allVariables()
+	    	  
+	    	    private void allVariables()
 	    	    {
 	    	    	System.out.println("Number of members: " + NumberOfMember); 
 	    	    	System.out.println("Project name: " + ProjectName); 
@@ -158,5 +158,7 @@ import java.util.Scanner;
 	    	    		System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
 	    	    	}
 	    	    }
+	
+		    	
 	    }    
 	
