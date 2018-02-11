@@ -5,24 +5,22 @@ import java.util.Scanner;
 	 public class RunApp
 	    {
 	    	public static String option; //Declaring the strings representing the menu option buttons
-	    	private static int NumberOfMember; 	//Entering the number of members
+	    	private static  int NumberOfMember; 	//Entering the number of members
 	    	private static String[] TeamMember; //Declaring the strings representing the names of the members
-	    	private static String ProjectName; 	// Declaring the project name variable as a string
-	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
+	    	private static  String ProjectName; 	// Declaring the project name variable as a string
+	    	static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
 	        static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
 	        DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
 	    	//----------------------------------------------
 	    	//Declaration of StartMenu(): listing Menu Options and equalsIgnoreCase to accept either upper or lower case
 	        //----------------------------------------------
 	    	MenuStart call = new MenuStart();
-	    	ShowProject call1 = new ShowProject();
+	    	//ShowProject call1 = new ShowProject();
 	    	
 	    	//----------------------------------------------
         	//Declaration of checkInput(String OneInput) method
         	//----------------------------------------------
 	    	//NEW SHOW PROJECT CLASS //     	    
-	    	
-    	
 	    	public void checkInput(String OneInput)
     	    {
     	    	if (OneInput.equalsIgnoreCase("A") == true) 	
@@ -31,7 +29,12 @@ import java.util.Scanner;
   	          }
     	    	else if (OneInput.equalsIgnoreCase("C") == true) 
   	      	  {
-  	      		  CreateProject();
+  	      		  	CreateProjectTitle();
+  	      		  	CreateProjectNumberofMembers();
+  	      		  	CreateProjectNamesofMembers();
+    	    		//ShowProject call1=new ShowProject();
+  	      		  	//call1=CreateProject();
+    	    	
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("V") == true) 
   	      	  {
@@ -40,9 +43,9 @@ import java.util.Scanner;
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("S") == true) 
     	      	  {
-    	    		ShowProject call1 = new ShowProject();
-    	    		allVariables();
-    	      		 
+    	    		ShowProject call1 = new ShowProject(); 
+    	    		call1.allVariables();
+    	    		
     	      	  }
       	    	
     	    	
@@ -56,9 +59,7 @@ import java.util.Scanner;
   	      		  CorrectInput = false;
   	      	  }
     	    }
-	    
-	    	
-	    	
+	   
 	    	//----------------
 	    	//----------------------------------------------
 	    	//Declaration of MenuStart Private Class: listing Menu Options and equalsIgnoreCase to accept either upper or lower case
@@ -93,8 +94,7 @@ import java.util.Scanner;
     	    }
     	          
 	    	}
-	        
-	        
+	    
 	    	//----------------------------------------------
 	    	//Declaration of About() method
 	    	//----------------------------------------------      
@@ -115,15 +115,17 @@ import java.util.Scanner;
 		    	//----------------------------------------------
 		    	//Declaration of CreateProject()
 		    	//----------------------------------------------    
-	    	    public void CreateProject()
+	    	    public String CreateProjectTitle()
 	    	    {
 	    	    	CorrectInput = true; 										
 	    	    	ShowMenu = true; 											//Still show Menu
 	    	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
 	    	    	ProjectName = scan.next();
-	    	    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
-	    	    	NumberOfMember = scan.nextInt();
-	    	    	System.out.print("\n");										
+					return ProjectName;
+					
+	    	    }
+	    	    
+	    	    public String CreateProjectNamesofMembers(){
 	    	    	TeamMember = new String[NumberOfMember];
 	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	{
@@ -134,8 +136,16 @@ import java.util.Scanner;
 	    	    	System.out.print("Press any key to return to the main menu: ");
 	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
 	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to true
+					return DummyInput;
+					
+				
 	    	    }
-	    	    
+	    	    public int CreateProjectNumberofMembers(){
+	    	    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
+	    	    	NumberOfMember = scan.nextInt();
+	    	    	System.out.print("\n");
+					return NumberOfMember;			
+	    	    }
 		    	//----------------------------------------------
 		    	//Declaration of Quit() method
 		    	//----------------------------------------------    
@@ -149,15 +159,15 @@ import java.util.Scanner;
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------
 	    	  
-	    	    private void allVariables()
-	    	    {
-	    	    	System.out.println("Number of members: " + NumberOfMember); 
-	    	    	System.out.println("Project name: " + ProjectName); 
-	    	    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
-	    	    	{
-	    	    		System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
-	    	    	}
-	    	    }
+	    	    //private void allVariables()
+	    	    //{
+	    	    	//System.out.println("Number of members: " + NumberOfMember); 
+	    	    	//System.out.println("Project name: " + ProjectName); 
+	    	    	//for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
+	    	    	//{
+	    	    		//System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
+	    	    	//}
+	    	    //}
 	
 		    	
 	    }    
