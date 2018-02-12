@@ -51,7 +51,8 @@ import java.util.Scanner;
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("S") == true) 
   	      	  {
-  	      		  ShowProject();      		  
+  	      		  ShowProject();      
+  	       	
   	      	  }
     	    	else if (OneInput.equalsIgnoreCase("Q") == true) 
   	      	  {
@@ -100,9 +101,12 @@ import java.util.Scanner;
     	    	ShowMenu = true;    	//Still show the menu	
     	    }
     	    
-	    	//----------------------------------------------
-	    	//Declaration of CreateProject()
+	    	    
+    	   
+    	  //----------------------------------------------
+	    	//Declaration of CreateProjectTitle()
 	    	//----------------------------------------------    
+    	    
     	    public String CreateProjectTitle()
     	    {
     	    	CorrectInput = true; 										
@@ -110,28 +114,35 @@ import java.util.Scanner;
     	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
     	    	ProjectName = scan.next();
 				return ProjectName;
-				
-				
+	
     	    }
+    	  //----------------------------------------------
+	    	//Declaration of CreateProjectNamesofMembers()
+	    	//----------------------------------------------
     	    public String[] CreateProjectNamesofMembers(){
-    	    	TeamMember = new String[NumberOfMember];
-    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
-    	    	{
-    		//Statement of variable allocation to corresponding member position
-    		System.out.print("\tEnter the name of team member " + MemberCount + ": ");
-    		TeamMember[MemberCount - 1] = scan.next();
-    	    											}
+    	    TeamMember = new String[NumberOfMember];
+    	    for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+    	    {
+    	    	//Statement of variable allocation to corresponding member position
+    	    	System.out.print("\tEnter the name of team member " + MemberCount + ": ");
+    	    		TeamMember[MemberCount - 1] = scan.next();
+    	    		}
     	    	System.out.print("Press any key to return to the main menu: ");
     	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
-    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to true
+    	    	ShowMenu = true; //Irrespective of the input, the menu will be shown again by assigning this boolean to true
+    	    	
+    	  
     	    	return TeamMember;
-
-    	    					}
+    	    	}
+    	    //----------------------------------------------
+	    	//Declaration of CreateProjectNumberofMembers()
+	    	//----------------------------------------------
     		public int CreateProjectNumberofMembers(){
-    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
-    	NumberOfMember = scan.nextInt();
-    	System.out.print("\n");
-		return NumberOfMember;		}	
+    			System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
+    			NumberOfMember = scan.nextInt();
+    			System.out.print("\n");
+    			return NumberOfMember;		
+    			}	
 	    	//----------------------------------------------
 	    	//Declaration of Quit() method
 	    	//----------------------------------------------    
