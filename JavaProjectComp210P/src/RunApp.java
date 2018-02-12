@@ -40,6 +40,7 @@ import java.util.Scanner;
     	      	  {
     	    		System.out.println("test");
     	    		getString();
+    	    		ShowMenu=false;
     	    		
     	    		
     	      	  }
@@ -158,11 +159,11 @@ import java.util.Scanner;
 	    	    }
 		    	
 	
-	    	    private class ShowProject {
-	    	       public void allVariables()
+	    	    public class ShowProject {
+	    	    	public ShowProject() {}
+	    	       public String allVariables()
 	    	       {
-	    	       	CorrectInput = true;  										
-	    	       	ShowMenu = true; 
+	    	       	
 	    	       	
 	    	           RunApp call0 = new RunApp();
 	    	           NumberOfMember= call0.CreateProjectNumberofMembers();
@@ -183,6 +184,7 @@ import java.util.Scanner;
 	    	       	{
 	    	       		System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
 	    	       	}
+					return null;
 	    	   	
 	    	   		
 	    	       }
