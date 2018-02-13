@@ -159,7 +159,7 @@ import java.util.Scanner;
     			storeThings2.setNumberofMember(NumberOfMember);
     			
     			//TEST TO SEE IF THE SET METHOD IS STORING THE VALUE OF NUMBEROFMEMBER:
-    			System.out.println("Congrats, you have entered in"+ storeThings2.setNumberofMember(NumberOfMember));
+    			System.out.println("Congrats, you have entered in "+ storeThings2.setNumberofMember(NumberOfMember) + " as your number of members.");
     			///----------------------------------------------------------------///
     			
     			return NumberOfMember;		
