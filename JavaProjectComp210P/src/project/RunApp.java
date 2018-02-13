@@ -115,7 +115,7 @@ import java.util.Scanner;
 	    	//Declaration of CreateProjectTitle()
 	    	//----------------------------------------------    
     	    
-    	    public void CreateProjectTitle()
+    	    public String CreateProjectTitle()
     	    {
     	    	CorrectInput = true; 										
     	    	ShowMenu = true; 											//Still show Menu
@@ -123,6 +123,7 @@ import java.util.Scanner;
     	    	ProjectName = scan.next();
     	    	StoreVariables storeThings1 = new StoreVariables();
     	    	storeThings1.setProjectName(ProjectName);
+    	    	return ProjectName;
 			
 	
     	    }

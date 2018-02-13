@@ -7,10 +7,14 @@ public class StoreVariables {
 	 private int NumberOfMember;
 	 private String ProjectName;
      private String[] TeamMember;
+     StoreVariables(){
+    	 
+     }
 	 
-	 public void setNumberofMember (int theNumberOfMember)
+	 public int setNumberofMember (int theNumberOfMember)
 	   {
 	      NumberOfMember = theNumberOfMember;
+	      return theNumberOfMember;
 	   }
 	 
 	 public String setProjectName (String theProjectName) {
