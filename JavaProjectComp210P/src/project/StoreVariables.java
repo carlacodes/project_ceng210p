@@ -2,12 +2,14 @@ package project;
 
 public class StoreVariables {
 	
-	
-	
-	 private int NumberOfMember;
+     private int NumberOfMember;
 	 private String ProjectName;
      private String[] TeamMember;
-    
+    StoreVariables(){
+    	NumberOfMember = 1;
+    	ProjectName = "ha ha ha ha at my life choices"; //Test to see if the class is being called correctly
+    	
+    }
 	 public int setNumberofMember (int theNumberOfMember)
 	   {
 	      NumberOfMember = theNumberOfMember;
@@ -26,20 +28,20 @@ public class StoreVariables {
 		 
 	 }
 	 
-	 public int getNumberofMember()
+	 public int getNumberofMember(int NumberOfMember)
 	 {
 		 return NumberOfMember;
 	 }
 	 
-	 public String getProjectName()
+	 public String getProjectName(String ProjectName)
 	 {
-		 System.out.println(ProjectName);
+		
 		 return ProjectName;
 	 }
 	 
 	 public String[] getTeamMember()
 	 {
-		 System.out.println(TeamMember);
+		
 		 return TeamMember;
 		 
 	 }

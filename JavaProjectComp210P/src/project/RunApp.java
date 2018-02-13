@@ -91,8 +91,8 @@ import java.util.Scanner;
     	    	ShowMenu = true; 		
     	    	//allVariables(); 		//Run the allVariables method 
     	    	StoreVariables getThings = new StoreVariables();
-    	    	System.out.println("Number of members: " + getThings.getNumberofMember()); 
-    	    	System.out.println("Project name: " + getThings.getProjectName()); 
+    	    	System.out.println("Number of members: " + getThings.getNumberofMember(NumberOfMember)); 
+    	    	System.out.println("Project name: " + getThings.getProjectName(ProjectName)); 
     	    	String[] abc = getThings.getTeamMember();
     	    	for (int Counter = 0; Counter < NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
     	    	{
@@ -154,10 +154,16 @@ import java.util.Scanner;
     			System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
     			NumberOfMember = scan.nextInt();
     			System.out.print("\n");
+    			
     			StoreVariables storeThings2 = new StoreVariables();
     			storeThings2.setNumberofMember(NumberOfMember);
+    			
+    			//TEST TO SEE IF THE SET METHOD IS STORING THE VALUE OF NUMBEROFMEMBER:
+    			System.out.println("Congrats, you have entered in"+ storeThings2.setNumberofMember(NumberOfMember));
+    			///----------------------------------------------------------------///
+    			
     			return NumberOfMember;		
-    			}	
+    			}
 	    	//----------------------------------------------
 	    	//Declaration of Quit() method
 	    	//----------------------------------------------    
@@ -170,11 +176,11 @@ import java.util.Scanner;
 	    	//--------------------------------------------------------------------------------
 	    	//Declaration of toString() method to check for all variable values when necessary
 	    	//--------------------------------------------------------------------------------
-    	    public void allVariables()
+    	    public void allVariables() //THIS CAN BE DELETED I AM PRETTY SURE @LOUIS DECIDE 
     	    {
     	    	StoreVariables getThings = new StoreVariables();
-    	    	System.out.println("Number of members: " + getThings.getNumberofMember()); 
-    	    	System.out.println("Project name: " + getThings.getProjectName()); 
+    	    	System.out.println("Number of members: " + getThings.getNumberofMember(NumberOfMember)); 
+    	    	System.out.println("Project name: " + getThings.getProjectName(ProjectName)); 
     	    	String[] TeamMember = getThings.getTeamMember();
     	    	for (int Counter = 0; Counter <=NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
     	    	{
