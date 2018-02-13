@@ -175,10 +175,10 @@ import java.util.Scanner;
     	    	StoreVariables getThings = new StoreVariables();
     	    	System.out.println("Number of members: " + getThings.getNumberofMember()); 
     	    	System.out.println("Project name: " + getThings.getProjectName()); 
-    	    	String[] abc = getThings.getTeamMember();
+    	    	String[] TeamMember = getThings.getTeamMember();
     	    	for (int Counter = 0; Counter <=NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
     	    	{
-    	    		System.out.println("Name of member " + (Counter +1) + " : " + abc[Counter]);
+    	    		System.out.println("Name of member " + (Counter +1) + " : " + TeamMember[Counter]);
     	    	}
     	    }
     }    

@@ -13,5 +13,9 @@ public class Project
      	RunApp call = new RunApp();
      	call.StartMenu();
     }
+	Project(){
+		RunApp call = new RunApp();
+     	call.StartMenu();
+	}
     
 }
