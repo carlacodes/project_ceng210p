@@ -3,23 +3,43 @@ package project;
 public class StoreVariables {
 	
 	
-	 RunApp call0 = new RunApp();
-	 int NumberOfMember = call0.CreateProjectNumberofMembers();
-	 String ProjectName = call0.CreateProjectTitle();
-     String[] TeamMember = call0.CreateProjectNamesofMembers(); 
+	
+	 private int NumberOfMember;
+	 private String ProjectName;
+     private String[] TeamMember;
 	 
 	 public void setNumberofMember (int theNumberOfMember)
 	   {
 	      NumberOfMember = theNumberOfMember;
 	   }
 	 
-	 public void setProjectName (String theProjectName) {
+	 public String setProjectName (String theProjectName) {
 		 ProjectName = theProjectName;
+		 return theProjectName;
 		 
 	 }
 	 
-	 public void setTeamMember (String[] theTeamMember) {
+	 public String[] setTeamMember (String[] theTeamMember) {
 		TeamMember = theTeamMember;
+		return theTeamMember;
+		 
+	 }
+	 
+	 public int getNumberofMember()
+	 {
+		 return NumberOfMember;
+	 }
+	 
+	 public String getProjectName()
+	 {
+		 System.out.println(ProjectName);
+		 return ProjectName;
+	 }
+	 
+	 public String[] getTeamMember()
+	 {
+		 System.out.println(TeamMember);
+		 return TeamMember;
 		 
 	 }
     

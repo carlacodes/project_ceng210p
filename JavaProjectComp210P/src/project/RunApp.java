@@ -89,7 +89,15 @@ import java.util.Scanner;
     	    {
     	    	CorrectInput = true; 	
     	    	ShowMenu = true; 		
-    	    	allVariables(); 		//Run the allVariables method 
+    	    	//allVariables(); 		//Run the allVariables method 
+    	    	StoreVariables getThings = new StoreVariables();
+    	    	System.out.println("Number of members: " + getThings.getNumberofMember()); 
+    	    	System.out.println("Project name: " + getThings.getProjectName()); 
+    	    	String[] abc = getThings.getTeamMember();
+    	    	for (int Counter = 0; Counter < NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
+    	    	{
+    	    		System.out.println("Name of member " + (Counter +1) + " : " + TeamMember[Counter]);
+    	    	}
     	    }
     	    
 	    	//----------------------------------------------
@@ -107,13 +115,15 @@ import java.util.Scanner;
 	    	//Declaration of CreateProjectTitle()
 	    	//----------------------------------------------    
     	    
-    	    public String CreateProjectTitle()
+    	    public void CreateProjectTitle()
     	    {
     	    	CorrectInput = true; 										
     	    	ShowMenu = true; 											//Still show Menu
     	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
     	    	ProjectName = scan.next();
-				return ProjectName;
+    	    	StoreVariables storeThings1 = new StoreVariables();
+    	    	storeThings1.setProjectName(ProjectName);
+			
 	
     	    }
     	  //----------------------------------------------
@@ -131,7 +141,9 @@ import java.util.Scanner;
     	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
     	    	ShowMenu = true; //Irrespective of the input, the menu will be shown again by assigning this boolean to true
     	    	
-    	  
+    	    	StoreVariables storeThings = new StoreVariables();
+    	    	storeThings.setTeamMember(TeamMember);
+    	    	
     	    	return TeamMember;
     	    	}
     	    //----------------------------------------------
@@ -141,6 +153,8 @@ import java.util.Scanner;
     			System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
     			NumberOfMember = scan.nextInt();
     			System.out.print("\n");
+    			StoreVariables storeThings2 = new StoreVariables();
+    			storeThings2.setNumberofMember(NumberOfMember);
     			return NumberOfMember;		
     			}	
 	    	//----------------------------------------------
@@ -157,11 +171,13 @@ import java.util.Scanner;
 	    	//--------------------------------------------------------------------------------
     	    public void allVariables()
     	    {
-    	    	System.out.println("Number of members: " + NumberOfMember); 
-    	    	System.out.println("Project name: " + ProjectName); 
-    	    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
+    	    	StoreVariables getThings = new StoreVariables();
+    	    	System.out.println("Number of members: " + getThings.getNumberofMember()); 
+    	    	System.out.println("Project name: " + getThings.getProjectName()); 
+    	    	String[] abc = getThings.getTeamMember();
+    	    	for (int Counter = 0; Counter <=NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
     	    	{
-    	    		System.out.println("Name of member " + Counter + " : " + TeamMember[Counter - 1]);
+    	    		System.out.println("Name of member " + (Counter +1) + " : " + abc[Counter]);
     	    	}
     	    }
     }    
