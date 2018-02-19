@@ -1,13 +1,13 @@
 package project;	
-import java.util.ArrayList;
-import java.util.Arrays;
+
 ///------------------------------------------------------------
 	///
 	///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT, DELIVERABLE 1
 	///
 	///------------------------------------------------------------
 	import java.util.Scanner; 			//Importing the scanner tool 
-	import java.text.DecimalFormat; 	//Importing the decimal tool
+import java.util.stream.IntStream; //for summing arrays
+import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	public class Project
 	{
@@ -21,25 +21,25 @@ import java.util.Arrays;
 		
 	    	public static String option; //Declaring the strings representing the menu option buttons
 	    	private static int NumberOfMember; 	//Entering the number of members
-	    	private static int NumberOfProjects; //The number of projects a user can enter
-	    	public static int index; //the 
+	    	
+	    	public static int index; //the Arraylist for entering in multiple projects
 	    	private static String[] TeamMember; //Declaring the strings representing the names of the members
-	    	private static  ArrayList<String> ProjectName; 	// Declaring the project name variable as a string
+	    	private static int[] Vote; 
+	    	private static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
-	    	 String SubProjectName;
+	    	
 	    	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
 	        DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
 	        //----------------------------------------------
 	        //Declaration of StartMenu(): listing Menu Options and equalsIgnoreCase to accept either upper or lower case
 	        //----------------------------------------------
 	    	    Project(){
-	    	    	int index=0;
+	    	    	
 	    	    }
 	    	    
 	        	public void StartMenu()   			
 	    	    {          
 	    	      Scanner scan = new Scanner(System.in);
-	    	      NumberOfProjects=1;
 	    	      System.out.println(); 					
 	    	      System.out.print("\nWelcome to Splitit ");
 	    	      do
@@ -78,6 +78,7 @@ import java.util.Arrays;
 	  	      	  {
 	  	      		  Quit();
 	  	      	  }
+	    	    	
 	    	    	else
 	  	      	  {
 	  	      		  System.out.print("\tIncorrect input. "); //If the user has entered an incorrect input, force them to enter in correct input
@@ -108,56 +109,81 @@ import java.util.Arrays;
 	    	    public void ShowProject()
 	    	    {
 	    	    	CorrectInput = true; 	
-	    	    	ShowMenu = true; 		
+	    	    	ShowMenu = true; 
 	    	    	
 	    	    	StoreVariables getThings = new StoreVariables();
+	    	    	
 	    	    	System.out.println("Number of members: " + getThings.getNumberofMember(NumberOfMember)); 
-					System.out.println("Project name: " + getThings.getProjectName(ProjectName)); 
+					System.out.println("Project name: " + getThings.getProjectName(ProjectName));
+					
+					
 	    	    	String[] abc = getThings.getTeamMember();
-	    	    	for (int Counter = 0; Counter < NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
+	    	    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
 	    	    	{
-	    	    		System.out.println("Name of member " + (Counter +1) + " : " + TeamMember[Counter]);
-	    	    	}
+	    	    		System.out.println("Name of member " + Counter + " : " + getTeamMemberName(Counter));
+	    	    	}	
+	    	    	
+	    	    	for (int Counter = 1; Counter <= NumberOfMember; Counter ++) //Returning each team member's name and corresponding member number
+	    	    	{
+	    	    		System.out.println("Votes for Member " + TeamMember[Counter-1] + " : ");
+	    	    		System.out.print(getThings.getVotes(Vote));
+	    	    	}	
+
 	    	    }
 	    	    
 		    	//----------------------------------------------
 		    	//Declaration of EnterVotes()
 		    	//----------------------------------------------    
-	    	    public void EnterVotes()
+	    	    public int[] EnterVotes()
 	    	    {
+	    	    	
+	    	    	Vote = new int [NumberOfMember];
 	    	    	CorrectInput = true; 
-	    	    	ShowMenu = true;    	//Still show the menu	
+	    	    	ShowMenu = true;    	//Still show the menu
+	    	    	if (NumberOfMember==0) {
+	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
+	    	    		
+	    	    	}
+	    	    	for (int i = 1; i <= NumberOfMember; i ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	{
+	    	    		//Statement of variable allocation to corresponding member position
+	    	    		System.out.print("\tEnter the votes for team member " + TeamMember[i-1] + ": ");
+	    	    		Vote[i-1] = scan.nextInt();
+	    	    	}
+	    	    	
+	    	    	int sum = IntStream.of(Vote).sum();
+	    	    	
+	    	    	//DECLARING ERROR MESSAGE//
+	    	    	if (sum!=100) {
+	    	    		System.out.println("Error. Please make sure all votes add up to 100.");
+	    	    		EnterVotes();
+	    	    	}
+	    	    	
+					return Vote;
 	    	    }
 	    	    
 		    	//----------------------------------------------
 		    	//Declaration of CreateProject()
 		    	//----------------------------------------------    
 	    	    
-	    	    public ArrayList<String> CreateProjectTitle()
+	    	    public String CreateProjectTitle()
 	    	    {
-	    	    	CorrectInput = true; 										
-	    	    	ShowMenu = true; 	//Still show Menu
-	    	    	//String[] ProjectName = new String[NumberOfProjects];
-	    	    	//ProjectName= Arrays.copyOf(ProjectName, ProjectName.length+1); //extend the LENGTH of the ProjectNamearray by one 
-					
-	    	    	 ArrayList<String> ProjectName = new ArrayList<String>();
-	    	    	 System.out.print("\n\tEnter the project name: "); 	
-	    	    	 String SubProjectName=scan.next();
-	    	         ProjectName.add(SubProjectName);
-	    	        
-					 System.out.println("you entered the project name"+ProjectName.get(index));
-					 return ProjectName;
-					
+	    	  
+	    	    	 CorrectInput = true; 										
+		    	    	ShowMenu = true; 											//Still show Menu
+		    	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
+		    	    	ProjectName = scan.next();
+						return ProjectName;
 	    	    } 
 	    	    
-	    	    public int CreateProjectNumberofMembers(){
+	    	    public int CreateProjectNumberofMembers(){ //ENTER NUMBER OF TEAM MEMBERS
 	    	    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
 	    	    	NumberOfMember = scan.nextInt();
 	    	    	System.out.print("\n");
 					return NumberOfMember;			
 	    	    }
 	    	    
-	    	    public String[] CreateProjectNamesofMembers(){
+	    	    public String[] CreateProjectNamesofMembers(){ 
 	    	    	TeamMember = new String[NumberOfMember];
 	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	{
@@ -190,8 +216,7 @@ import java.util.Arrays;
 	    	    {
 	    	    	return Integer.toString(NumberOfMember);
 	    	    }
-	    	    
-	    	    private ArrayList<String> getProjectName(int NumberOfProjects)
+	    	    private String getProjectName(int NumberOfProjects)
 	    	    {
 	    	    	return ProjectName;
 	    	    }

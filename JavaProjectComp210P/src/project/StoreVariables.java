@@ -1,21 +1,15 @@
-
 package project;
-import java.util.ArrayList;
-import java.util.Scanner; 
 
 public class StoreVariables {
 	
      private int NumberOfMember;
-	 private ArrayList<String> ProjectName;
-	 public int index;
+	 private String ProjectName;
      private String[] TeamMember;
-     private int NumberOfProjects;
-     Scanner scan = new Scanner(System.in);
+     private int[] Votes;
     StoreVariables(){
     	NumberOfMember = 1;
-    	index=0;
     	
-    	//ProjectName[1] = "ha ha ha ha at my life choices"; //Test to see if the class is being called correctly
+    	ProjectName = "ha ha ha ha at my life choices"; //Test to see if the class is being called correctly
     	
     }
 	 public int setNumberofMember (int theNumberOfMember)
@@ -24,8 +18,14 @@ public class StoreVariables {
 	      return theNumberOfMember;
 	   }
 	 
-	 public ArrayList<String> setProjectName (ArrayList<String> theProjectName) {
-		 //ProjectName[NumberOfProjects] = theProjectName[NumberOfProjects];
+	 public int[] setVotes (int[] theVotes)
+	   {
+	      Votes = theVotes;
+	      return theVotes;
+	   }
+	 
+	 public String setProjectName (String theProjectName) {
+		 ProjectName = theProjectName;
 		 return theProjectName;
 		 
 	 }
@@ -41,11 +41,10 @@ public class StoreVariables {
 		 return NumberOfMember;
 	 }
 	 
-	 public ArrayList<String> getProjectName(ArrayList<String> theProjectName)
+	 public String getProjectName(String ProjectName)
 	 {
-		 
-		//ProjectName=theProjectName;
-		 return theProjectName;
+		
+		 return ProjectName;
 	 }
 	 
 	 public String[] getTeamMember()
@@ -54,8 +53,12 @@ public class StoreVariables {
 		 return TeamMember;
 		 
 	 }
-}
+	 public int[] getVotes (int theVotes[])
+	   {
+		
+	      return theVotes;
+	   }
+	
     
    
-
-
+}
