@@ -150,8 +150,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	PrintWriter outputStream = null;
 	    	         try
 	    	         {
-	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
+	    	             outputStream = new PrintWriter(new FileOutputStream(fileName+".txt"));
 	    	         }
 	    	         catch(FileNotFoundException e)
 	    	         {
@@ -181,7 +180,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		System.out.println("Error. Please make sure all votes add up to 100.");
 	    	    		EnterVotes();
 	    	    	}
-	    	    	
+	    	    	outputStream.close();
 					return Vote;
 	    	    }
 	    	    
