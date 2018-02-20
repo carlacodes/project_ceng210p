@@ -7,6 +7,7 @@ package project;
 	///------------------------------------------------------------
 	import java.util.Scanner; 			//Importing the scanner tool 
 import java.util.stream.IntStream; //for summing arrays
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	public class Project
@@ -22,7 +23,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	
 	    	public static int index=NumberOfMember; //used for later, declaring a square matrix
 	    	public static String[] TeamMember; //Declaring the strings representing the names of the members
-	    	public static int[][] Vote, matrix;
+	    	public static int[][] Vote;
 	    	
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
@@ -140,7 +141,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
 	    	    		ShowMenu=true;
 	    	    	}
-	    	    	int sum=0;
+	    	    	
 	    	    	for (int row=0; row < Vote.length; row++)
 	    	    	{
 	    	    		System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
@@ -156,10 +157,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
     	    			//System.out.println("Error. Please make sure all votes add up to 100.");
     	    			//EnterVotes();
     	    		//}
-	    	        sumRow(Vote, NumberOfMember);
+	    	       sumRow(Vote, NumberOfMember);
 	    		   return Vote;
 	    	    }
-	    	    public int[] sumRow(int[][] Vote, int NumberOfMember)
+	    	    public int[] sumRow(int[][] Vote, int NumberOfMember) 
 	    	    {
 	    	    	 int sum[] = new int[NumberOfMember];
 	    	    	  
@@ -169,8 +170,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	               	    total +=Vote[i][j];
 	    	            sum[i] = total;}
 	    	            
-	    	            boolean flag = true;
-	    	         
+	    	            
 	    	            for(int i = 1; i < sum.length; i++)
 	    	            {
 	    	              if (sum[i] != 100) {
@@ -178,7 +178,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	            	  EnterVotes();
 	    	              }
 	    	            }
-	    	            return sum;}
+	    	            WriteOut getsecond = new WriteOut();
+	    	            getsecond.SecondExport(Vote);
+	    	            return sum;
+	    	            }
 	   
 	    	    	      
 	    	    	//DECLARING ERROR MESSAGE//

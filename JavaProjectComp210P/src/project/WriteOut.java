@@ -1,15 +1,19 @@
 package project;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Scanner;
     public class WriteOut {
     private int NumberOfMember;
    	private String ProjectName;
     private String[] TeamMember;
     public static String fileName;
-    private int[] Votes;
+    private int[][] Vote;
    
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
@@ -26,7 +30,6 @@ import java.util.Scanner;
 	        fileObject = new File(fileName+".txt");
 	    }
     	PrintWriter outputStream = null;
-	
 		try
 	    {
 	        outputStream =
@@ -46,7 +49,31 @@ import java.util.Scanner;
     	outputStream.close();
     	return NumberOfMember;
         }
-  
+    
+        public int[][] SecondExport(int[][] Vote)  {
+        	System.out.println("hello"); //test to see if this is being called correctly
+			//PrintWriter outputStream=null;
+        	BufferedWriter bw = null;
+        	 try {
+        	 bw = new BufferedWriter(new FileWriter(fileName+".txt", true));
+        	 bw.append("TEST");
+        	 bw.newLine();
+        	 bw.flush();
+              } catch (IOException ioe) {
+        	 ioe.printStackTrace();
+              } finally {                       // always close the file
+        	 if (bw != null) try {
+        	    bw.close();
+        	 } catch (IOException ioe2) {
+        	    // just ignore it
+        	 }
+        	 
+              } // end try/catch/finally
+        	 
+			return Vote;
+   
+        }
+        
     }
     
    
