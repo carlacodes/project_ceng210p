@@ -132,9 +132,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//Declaration of EnterVotes()
 		    	//----------------------------------------------    
 	    	    public int[][] EnterVotes()
-	    	    {   //ShowMenu = true;    	
-	    		    //CorrectInput = true; 
-	    	    	//ShowMenu=true;
+	    	    {   
 	    	    	CorrectInput=true;
 	    	    	Vote = new int [NumberOfMember][index];
 	    	    	index=NumberOfMember;
@@ -142,6 +140,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
 	    	    		ShowMenu=true;
 	    	    	}
+	    	    	int sum=0;
 	    	    	for (int row=0; row < Vote.length; row++)
 	    	    	{
 	    	    		System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
@@ -149,11 +148,38 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		for (int col=0; col < Vote[row].length; col++)
 	    	    	    { 
 	    	    	        System.out.println("Enter "+TeamMember[row]+ "'s points for"+ TeamMember[col]+":");
-	    	    	        Vote[row][col] = scan.nextInt();
+	    	    	        Vote[row][col] = scan.nextInt(); 
 	    	    	    }
 	    	    	}
-	    		    			return Vote;
+	    	    	
+	    	    	//if (sum!=100){
+    	    			//System.out.println("Error. Please make sure all votes add up to 100.");
+    	    			//EnterVotes();
+    	    		//}
+	    	        sumRow(Vote, NumberOfMember);
+	    		   return Vote;
 	    	    }
+	    	    public int[] sumRow(int[][] Vote, int NumberOfMember)
+	    	    {
+	    	    	 int sum[] = new int[NumberOfMember];
+	    	    	  
+	    	            for (int i = 0; i < Vote.length; i++){
+	    	            int total = 0;
+	    	            for (int j = 0; j < Vote[0].length; j++)
+	               	    total +=Vote[i][j];
+	    	            sum[i] = total;}
+	    	            
+	    	            boolean flag = true;
+	    	         
+	    	            for(int i = 1; i < sum.length; i++)
+	    	            {
+	    	              if (sum[i] != 100) {
+	    	            	  System.out.println("Please Make Sure the points add to 100!");
+	    	            	  EnterVotes();
+	    	              }
+	    	            }
+	    	            return sum;}
+	   
 	    	    	      
 	    	    	//DECLARING ERROR MESSAGE//
 	    	    	//int sum = IntStream.of(Vote[NumberOfMember]).sum();
