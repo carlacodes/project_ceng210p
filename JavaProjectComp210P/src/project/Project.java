@@ -31,7 +31,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		
 	    	public static String option; //Declaring the strings representing the menu option buttons
 	    	private static int NumberOfMember; 	//Entering the number of members
-	    	public String fileName = null;
 	    	
 	    	public static int index; //used for later 
 	    	public static String[] TeamMember; //Declaring the strings representing the names of the members
@@ -74,7 +73,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	else if (OneInput.equalsIgnoreCase("C") == true) 
 	  	      	  {
 	    	    		CreateProjectTitle();
-	  	      		  	
 	  	      	  }
 	    	    	else if (OneInput.equalsIgnoreCase("V") == true) 
 	  	      	  {
@@ -122,7 +120,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	ShowMenu = true; 
 	    	    	
 	    	    	StoreVariables getThings = new StoreVariables();
-	    	    	
+	
 	    	    	System.out.println("Number of members: " + getThings.getNumberofMember(NumberOfMember)); 
 					System.out.println("Project name: " + getThings.getProjectName(ProjectName));
 					
@@ -146,17 +144,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------    
 	    	    public int[] EnterVotes()
 	    	    {
-	    	    	PrintWriter outputStream = null;
-	    	    	try
-	    	         {
-	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
-	    	         }
-	    	         catch(FileNotFoundException e)
-	    	         {
-	    	             System.out.println("Error opening the file " + fileName +".txt");
-	    	             System.exit(0);
-	    	         }
 	    	    	
 	    	    	Vote = new int [NumberOfMember];
 	    	    	CorrectInput = true; 
@@ -170,9 +157,9 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		//Statement of variable allocation to corresponding member position
 	    	    		System.out.print("\tEnter the votes for team member " + TeamMember[i-1] + ": ");
 	    	    		Vote[i-1] = scan.nextInt();
-	    	    		outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
+	    	    		//outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
 	    	    	}
-	    	    	outputStream.close();
+	    	    	
 	    	    	int sum = IntStream.of(Vote).sum();
 	    	    	
 	    	    	//DECLARING ERROR MESSAGE//
@@ -189,38 +176,11 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------    
 	    	    
 	    	    public String CreateProjectTitle()
-	    	    {
-	    	    	 System.out.println("Enter a file name to hold the Project:");
-	    	         fileName = scan.nextLine( );
-	    	         File fileObject = new File(fileName+".txt");
-	    	         while (fileObject.exists( ))
-	    	         {
-	    	             System.out.println("There already is a file named "
-	    	             + fileName);
-	    	             System.out.println("Enter a different file name:");
-	    	             fileName = scan.nextLine( );
-	    	             fileObject = new File(fileName+".txt");
-	    	         }
-	    	         
-	    	         PrintWriter outputStream = null;
-	    	         try
-	    	         {
-	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
-	    	         }
-	    	         catch(FileNotFoundException e)
-	    	         {
-	    	             System.out.println("Error opening the file " + fileName +".txt");
-	    	             System.exit(0);
-	    	         }
-
-	    	         
+	    	    {   new WriteOut();
 	    	    	CorrectInput = true; 										
 	    	    	ShowMenu = true; 											//Still show Menu
 	    	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
 	    	    	ProjectName = scan.next();
-	    	    	outputStream.println(ProjectName);
-	    	    	outputStream.close();
 	    	    	CreateProjectNumberofMembers(); //calling methods within the resulting methods
   	      		  	CreateProjectNamesofMembers();
 					return ProjectName;
@@ -235,16 +195,24 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    
 	    	    public String[] CreateProjectNamesofMembers(){ 
 	    	    	TeamMember = new String[NumberOfMember];
+	    	    	
+	    	    	
+	    	         
 	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	{
 	    	    		//Statement of variable allocation to corresponding member position
 	    	    		System.out.print("\tEnter the name of team member " + MemberCount + ": ");
 	    	    		TeamMember[MemberCount - 1] = scan.next();
+	    	    		
 	    	    	}
-	
+	    	    	
+	    	    	WriteOut getThings2= new WriteOut();
+	    	    	getThings2.FirstExport();
 	    	    	System.out.print("Press any key to return to the main menu: ");
 	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
 	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to tr 
+	    	    	
+	    	    	
 	    	    	return TeamMember;
 			
 	    	    }
@@ -256,36 +224,15 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    {
 	    	    	CorrectInput = true; 				
 	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
-	    	    	WriteOut();
+	    	    	//WriteOut();
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();
 	    	    }
-	    	    public void WriteOut() {
-	    	    	PrintWriter outputStream = null;
-	    	    	try
-	    	         {
-	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
-	    	         }
-	    	         catch(FileNotFoundException e)
-	    	         {
-	    	             System.out.println("Error opening the file " + fileName +".txt");
-	    	             System.exit(0);
-	    	         }
-	    	         
-	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
-	    	    	{
-	    	    		//Statement of variable allocation to corresponding member position
-	    	    		outputStream.println("Team Member"+(MemberCount-1)+ ":"+TeamMember[MemberCount - 1]);
-	    	    	}
-	    	    	outputStream.println("Number of Members:"+ NumberOfMember+ "Project Name:"+ProjectName);
-	    	        outputStream.close();
-	    	    }
-	    	    
+	    	   
    	    	
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
-		    	//--------------------------------------------------------------------------------
+		    	//--------------------------------------------------------------------------------  
 	    	    private String getNumberOfMember()
 	    	    {
 	    	    	return Integer.toString(NumberOfMember);
