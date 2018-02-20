@@ -33,10 +33,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	private static int NumberOfMember; 	//Entering the number of members
 	    	public String fileName = null;
 	    	
-	    	public static int index; //the Arraylist for entering in multiple projects
-	    	private static String[] TeamMember; //Declaring the strings representing the names of the members
-	    	private static int[] Vote; 
-	    	private static  String ProjectName; 	// Declaring the project name variable as a string
+	    	public static int index; //used for later 
+	    	public static String[] TeamMember; //Declaring the strings representing the names of the members
+	    	public static int[] Vote; 
+	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
 	    	
 	    	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
@@ -146,15 +146,15 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------    
 	    	    public int[] EnterVotes()
 	    	    {
-	    	    	 
 	    	    	PrintWriter outputStream = null;
-	    	         try
+	    	    	try
 	    	         {
-	    	             outputStream = new PrintWriter(new FileOutputStream(fileName+".txt"));
+	    	             outputStream =
+	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
 	    	         }
 	    	         catch(FileNotFoundException e)
 	    	         {
-	    	             System.out.println("Error opening the file " + fileName+".txt");
+	    	             System.out.println("Error opening the file " + fileName +".txt");
 	    	             System.exit(0);
 	    	         }
 	    	    	
@@ -230,26 +230,37 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
 	    	    	NumberOfMember = scan.nextInt();
 	    	    	System.out.print("\n");
-	    	    	PrintWriter outputStream = null;
-	    	         try
-	    	         {
-	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
-	    	         }
-	    	         catch(FileNotFoundException e)
-	    	         {
-	    	             System.out.println("Error opening the file " + fileName +".txt");
-	    	             System.exit(0);
-	    	         }
-	    	    	outputStream.println("Number Of Team Members:"+NumberOfMember);
-	    	    	outputStream.close();
 					return NumberOfMember;			
 	    	    }
 	    	    
 	    	    public String[] CreateProjectNamesofMembers(){ 
 	    	    	TeamMember = new String[NumberOfMember];
-
-	    	    	
+	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	{
+	    	    		//Statement of variable allocation to corresponding member position
+	    	    		System.out.print("\tEnter the name of team member " + MemberCount + ": ");
+	    	    		TeamMember[MemberCount - 1] = scan.next();
+	    	    	}
+	
+	    	    	System.out.print("Press any key to return to the main menu: ");
+	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
+	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to tr 
+	    	    	return TeamMember;
+			
+	    	    }
+	    	    
+		    	//----------------------------------------------
+		    	//Declaration of Quit() method
+		    	//----------------------------------------------    
+	    	    public void Quit()
+	    	    {
+	    	    	CorrectInput = true; 				
+	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
+	    	    	WriteOut();
+	    	    	System.out.println("\tGoodbye. ");    	
+	    	    	scan.close();
+	    	    }
+	    	    public void WriteOut() {
 	    	    	PrintWriter outputStream = null;
 	    	    	try
 	    	         {
@@ -265,36 +276,16 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	{
 	    	    		//Statement of variable allocation to corresponding member position
-	    	    		System.out.print("\tEnter the name of team member " + MemberCount + ": ");
-	    	    		TeamMember[MemberCount - 1] = scan.next();
 	    	    		outputStream.println("Team Member"+(MemberCount-1)+ ":"+TeamMember[MemberCount - 1]);
 	    	    	}
-	    	         
+	    	    	outputStream.println("Number of Members:"+ NumberOfMember+ "Project Name:"+ProjectName);
 	    	        outputStream.close();
-	    	    	
-	    	    	System.out.print("Press any key to return to the main menu: ");
-	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
-	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to true
-	    	    	
-	    	    	return TeamMember;
-			
 	    	    }
 	    	    
-		    	//----------------------------------------------
-		    	//Declaration of Quit() method
-		    	//----------------------------------------------    
-	    	    public void Quit()
-	    	    {
-	    	    	CorrectInput = true; 				
-	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
-	    	    	System.out.println("\tGoodbye. ");    	
-	    	    	scan.close();
-	    	    }
+   	    	
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------
-	    	    
-	    	    
 	    	    private String getNumberOfMember()
 	    	    {
 	    	    	return Integer.toString(NumberOfMember);
@@ -310,4 +301,5 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    }
 	    	  
 	    }
+
 
