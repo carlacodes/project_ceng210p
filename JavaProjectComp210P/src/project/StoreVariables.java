@@ -5,7 +5,7 @@ public class StoreVariables {
      private int NumberOfMember;
 	 private String ProjectName;
      private String[] TeamMember;
-     private int[] Votes;
+     private int[][] Votes;
     StoreVariables(){
     	NumberOfMember = 1;
     	
@@ -18,7 +18,7 @@ public class StoreVariables {
 	      return theNumberOfMember;
 	   }
 	 
-	 public int[] setVotes (int[] theVotes)
+	 public int[][] setVotes (int[][] theVotes)
 	   {
 	      Votes = theVotes;
 	      return theVotes;
@@ -53,7 +53,7 @@ public class StoreVariables {
 		 return TeamMember;
 		 
 	 }
-	 public int[] getVotes (int theVotes[])
+	 public int[][] getVotes (int theVotes[][])
 	   {
 		
 	      return theVotes;

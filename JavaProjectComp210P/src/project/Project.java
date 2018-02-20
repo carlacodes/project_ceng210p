@@ -20,9 +20,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	public static String option; //Declaring the strings representing the menu option buttons
 	    	private static int NumberOfMember; 	//Entering the number of members
 	    	
-	    	public static int index; //used for later 
+	    	public static int index=NumberOfMember; //used for later, declaring a square matrix
 	    	public static String[] TeamMember; //Declaring the strings representing the names of the members
-	    	public static int[] Vote; 
+	    	public static int[][] Vote, matrix;
+	    	
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
 	    	public String fileName;
@@ -130,34 +131,38 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------
 		    	//Declaration of EnterVotes()
 		    	//----------------------------------------------    
-	    	    public int[] EnterVotes()
-	    	    {
-	    	    	
-	    	    	Vote = new int [NumberOfMember];
-	    	    	CorrectInput = true; 
-	    	    	ShowMenu = true;    	//Still show the menu
+	    	    public int[][] EnterVotes()
+	    	    {   //ShowMenu = true;    	
+	    		    //CorrectInput = true; 
+	    	    	//ShowMenu=true;
+	    	    	CorrectInput=true;
+	    	    	Vote = new int [NumberOfMember][index];
+	    	    	index=NumberOfMember;
 	    	    	if (NumberOfMember==0) {
 	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
-	    	    		
+	    	    		ShowMenu=true;
 	    	    	}
-	    	    	for (int i = 1; i <= NumberOfMember; i ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	for (int row=0; row < Vote.length; row++)
 	    	    	{
-	    	    		//Statement of variable allocation to corresponding member position
-	    	    		System.out.print("\tEnter the votes for team member " + TeamMember[i-1] + ": ");
-	    	    		Vote[i-1] = scan.nextInt();
-	    	    		//outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
+	    	    		System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
+	    	    	    System.out.println();
+	    	    		for (int col=0; col < Vote[row].length; col++)
+	    	    	    { 
+	    	    	        System.out.println("Enter "+TeamMember[row]+ "'s points for"+ TeamMember[col]+":");
+	    	    	        Vote[row][col] = scan.nextInt();
+	    	    	    }
 	    	    	}
-	    	    	
-	    	    	int sum = IntStream.of(Vote).sum();
-	    	    	
-	    	    	//DECLARING ERROR MESSAGE//
-	    	    	if (sum!=100) {
-	    	    		System.out.println("Error. Please make sure all votes add up to 100.");
-	    	    		EnterVotes();
-	    	    	}
-	    	    	
-					return Vote;
+	    		    			return Vote;
 	    	    }
+	    	    	      
+	    	    	//DECLARING ERROR MESSAGE//
+	    	    	//int sum = IntStream.of(Vote[NumberOfMember]).sum();
+	    	    	//if (sum!=100) {
+	    	    		//System.out.println("Error. Please make sure all votes add up to 100.");
+	    	    		//EnterVotes();
+	    	    	//}
+			
+	    	   
 	    	    
 		    	//----------------------------------------------
 		    	//Declaration of CreateProject()
