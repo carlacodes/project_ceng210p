@@ -172,7 +172,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		Vote[i-1] = scan.nextInt();
 	    	    		outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
 	    	    	}
-	    	    	
+	    	    	outputStream.close();
 	    	    	int sum = IntStream.of(Vote).sum();
 	    	    	
 	    	    	//DECLARING ERROR MESSAGE//
@@ -180,7 +180,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		System.out.println("Error. Please make sure all votes add up to 100.");
 	    	    		EnterVotes();
 	    	    	}
-	    	    	outputStream.close();
+	    	    	
 					return Vote;
 	    	    }
 	    	    
@@ -206,11 +206,11 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	         try
 	    	         {
 	    	             outputStream =
-	    	                  new PrintWriter(new FileOutputStream(fileName +".txt"));
+	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
 	    	         }
 	    	         catch(FileNotFoundException e)
 	    	         {
-	    	             System.out.println("Error opening the file " + fileName+ ".txt");
+	    	             System.out.println("Error opening the file " + fileName +".txt");
 	    	             System.exit(0);
 	    	         }
 
@@ -238,10 +238,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	         }
 	    	         catch(FileNotFoundException e)
 	    	         {
-	    	             System.out.println("Error opening the file " + fileName+".txt");
+	    	             System.out.println("Error opening the file " + fileName +".txt");
 	    	             System.exit(0);
 	    	         }
-	    	    	outputStream.println(NumberOfMember);
+	    	    	outputStream.println("Number Of Team Members:"+NumberOfMember);
 	    	    	outputStream.close();
 					return NumberOfMember;			
 	    	    }
@@ -251,14 +251,14 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	    	    	
 	    	    	PrintWriter outputStream = null;
-	    	         try
+	    	    	try
 	    	         {
 	    	             outputStream =
 	    	                  new PrintWriter(new FileOutputStream(fileName+".txt"));
 	    	         }
 	    	         catch(FileNotFoundException e)
 	    	         {
-	    	             System.out.println("Error opening the file " + fileName);
+	    	             System.out.println("Error opening the file " + fileName +".txt");
 	    	             System.exit(0);
 	    	         }
 	    	         
