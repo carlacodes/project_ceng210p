@@ -10,7 +10,8 @@ import java.util.Scanner;
     private String[] TeamMember;
     public static String fileName;
     private int[] Votes;
-    
+   
+	 
 	 
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
@@ -38,7 +39,6 @@ import java.util.Scanner;
 	        System.out.println("Error opening the file " + fileName +".txt");
 	        System.exit(0);
 	    }
-		
     	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
     	{
     		//Statement of variable allocation to corresponding member position
