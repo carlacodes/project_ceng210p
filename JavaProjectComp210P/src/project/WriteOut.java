@@ -11,11 +11,9 @@ import java.util.Scanner;
     public static String fileName;
     private int[] Votes;
    
-	 
-	 
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
-		String fileName="ok";
+		String fileName="ok"; //intializing the file name
 		System.out.println("Enter a file name to hold the Project:");
 	    fileName = scan.nextLine( );
 	    File fileObject = new File(fileName+".txt");
@@ -28,7 +26,7 @@ import java.util.Scanner;
 	        fileObject = new File(fileName+".txt");
 	    }
     	PrintWriter outputStream = null;
-	   
+	
 		try
 	    {
 	        outputStream =
@@ -42,7 +40,7 @@ import java.util.Scanner;
     	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
     	{
     		//Statement of variable allocation to corresponding member position
-    		outputStream.println("Team Member"+(MemberCount-1)+ ":"+TeamMember[MemberCount - 1]);
+    		outputStream.println("Team Member"+(MemberCount)+ ":"+TeamMember[MemberCount - 1]);
     	}
     	outputStream.println("Number of Members:"+ NumberOfMember+ "Project Name:"+ProjectName);
     	outputStream.close();
