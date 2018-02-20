@@ -7,16 +7,6 @@ package project;
 	///------------------------------------------------------------
 	import java.util.Scanner; 			//Importing the scanner tool 
 import java.util.stream.IntStream; //for summing arrays
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	public class Project
@@ -37,7 +27,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	public static int[] Vote; 
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
-	    	
+	    	public String fileName;
 	    	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
 	        DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
 	        //----------------------------------------------
@@ -176,7 +166,8 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------    
 	    	    
 	    	    public String CreateProjectTitle()
-	    	    {   new WriteOut();
+	    	    {  
+	    	    	
 	    	    	CorrectInput = true; 										
 	    	    	ShowMenu = true; 											//Still show Menu
 	    	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
@@ -196,8 +187,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    public String[] CreateProjectNamesofMembers(){ 
 	    	    	TeamMember = new String[NumberOfMember];
 	    	    	
-	    	    	
-	    	         
 	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	{
 	    	    		//Statement of variable allocation to corresponding member position
@@ -206,8 +195,9 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		
 	    	    	}
 	    	    	
+	    	    	
 	    	    	WriteOut getThings2= new WriteOut();
-	    	    	getThings2.FirstExport();
+	    	    	getThings2.FirstExport(NumberOfMember, ProjectName, TeamMember);
 	    	    	System.out.print("Press any key to return to the main menu: ");
 	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
 	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to tr 

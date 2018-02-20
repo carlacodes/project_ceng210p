@@ -5,15 +5,18 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
     public class WriteOut {
-    public int NumberOfMember;
-   	public String ProjectName;
-    public String[] TeamMember;
-    public String fileName;
-    public int[] Votes;
-	public static void main(String[] args) {
-		System.out.println("hello");
-		Scanner scan = new Scanner(System.in);
-	    String fileName = null;
+    private int NumberOfMember;
+   	private String ProjectName;
+    private String[] TeamMember;
+    public static String fileName;
+    private int[] Votes;
+   
+   
+	 
+	 
+    public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
+    	Scanner scan = new Scanner(System.in);
+		String fileName="ok";
 		System.out.println("Enter a file name to hold the Project:");
 	    fileName = scan.nextLine( );
 	    File fileObject = new File(fileName+".txt");
@@ -25,9 +28,6 @@ import java.util.Scanner;
 	        fileName = scan.nextLine( );
 	        fileObject = new File(fileName+".txt");
 	    }
-   }
-	  
-    public int FirstExport() {
     	PrintWriter outputStream = null;
 	   
 		try
