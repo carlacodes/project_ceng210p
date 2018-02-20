@@ -14,9 +14,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		public static void main(String[] args)
 	    {
 			Project run = new Project();
-			run.StartMenu();
-			 
-			
+			run.StartMenu();		 
 	    }
 		
 	    	public static String option; //Declaring the strings representing the menu option buttons
@@ -194,8 +192,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		TeamMember[MemberCount - 1] = scan.next();
 	    	    		
 	    	    	}
-	    	    	
-	    	    	
+	    	        	
 	    	    	WriteOut getThings2= new WriteOut();
 	    	    	getThings2.FirstExport(NumberOfMember, ProjectName, TeamMember);
 	    	    	System.out.print("Press any key to return to the main menu: ");

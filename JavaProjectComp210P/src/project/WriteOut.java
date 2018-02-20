@@ -42,7 +42,7 @@ import java.util.Scanner;
     		//Statement of variable allocation to corresponding member position
     		outputStream.println("Team Member"+(MemberCount)+ ":"+TeamMember[MemberCount - 1]);
     	}
-    	outputStream.println("Number of Members:"+ NumberOfMember+ "Project Name:"+ProjectName);
+    	outputStream.println("Number of Members:"+ NumberOfMember+ "\nProject Name:"+ProjectName);
     	outputStream.close();
     	return NumberOfMember;
         }
