@@ -17,7 +17,7 @@ import java.util.Scanner;
    
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
-		String fileName="ok"; //intializing the file name
+		String fileName="ok"; //initializing the file name
 		System.out.println("Enter a file name to hold the Project:");
 	    fileName = scan.nextLine( );
 	    File fileObject = new File(fileName+".txt");
@@ -47,6 +47,7 @@ import java.util.Scanner;
     	}
     	outputStream.println("Number of Members:"+ NumberOfMember+ "\nProject Name:"+ProjectName);
     	outputStream.close();
+    	scan.close();
     	return NumberOfMember;
         }
     
@@ -69,7 +70,7 @@ import java.util.Scanner;
 			return Vote;
    
         }
-        
+      
     }
     
    

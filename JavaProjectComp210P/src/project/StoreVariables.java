@@ -6,7 +6,8 @@ public class StoreVariables {
 	 private String ProjectName;
      private String[] TeamMember;
      private int[][] Votes;
-    StoreVariables(){
+     
+     public StoreVariables(){ //initializing variables using a constructor
     	NumberOfMember = 1;
     	
     	ProjectName = "ha ha ha ha at my life choices"; //Test to see if the class is being called correctly

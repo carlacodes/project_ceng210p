@@ -184,13 +184,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	            }
 	   
 	    	    	      
-	    	    	//DECLARING ERROR MESSAGE//
-	    	    	//int sum = IntStream.of(Vote[NumberOfMember]).sum();
-	    	    	//if (sum!=100) {
-	    	    		//System.out.println("Error. Please make sure all votes add up to 100.");
-	    	    		//EnterVotes();
-	    	    	//}
-			
+	 
 	    	   
 	    	    
 		    	//----------------------------------------------
