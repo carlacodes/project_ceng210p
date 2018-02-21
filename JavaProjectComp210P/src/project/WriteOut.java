@@ -52,23 +52,19 @@ import java.util.Scanner;
     
         public int[][] SecondExport(int[][] Vote)  {
         	System.out.println("hello"); //test to see if this is being called correctly
-			//PrintWriter outputStream=null;
-        	BufferedWriter bw = null;
-        	 try {
-        	 bw = new BufferedWriter(new FileWriter(fileName+".txt", true));
-        	 bw.append("TEST");
-        	 bw.newLine();
-        	 bw.flush();
-              } catch (IOException ioe) {
-        	 ioe.printStackTrace();
-              } finally {                       // always close the file
-        	 if (bw != null) try {
-        	    bw.close();
-        	 } catch (IOException ioe2) {
-        	    // just ignore it
-        	 }
-        	 
-              } // end try/catch/finally
+			//PrintWriter outputStream=null
+        	try 
+            {
+                String content = "This is the content to write into file";
+                BufferedWriter bw = new BufferedWriter(new FileWriter(fileName+".txt", true));
+                bw.append(content);
+                System.out.println("Done");
+                bw.close();
+            } catch (IOException e) 
+            {
+                e.printStackTrace();
+            }
+        	
         	 
 			return Vote;
    
