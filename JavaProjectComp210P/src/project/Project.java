@@ -141,7 +141,8 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
 	    	    		ShowMenu=true;
 	    	    	}
-	    	    	
+	    	    	CheckProjectName check = new CheckProjectName();
+	    	    	check.CheckName(NumberOfMember, ProjectName, TeamMember);
 	    	    	for (int row=0; row < Vote.length; row++)
 	    	    	{
 	    	    		System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
@@ -152,11 +153,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	        Vote[row][col] = scan.nextInt(); 
 	    	    	    }
 	    	    	}
-	    	    	
-	    	    	//if (sum!=100){
-    	    			//System.out.println("Error. Please make sure all votes add up to 100.");
-    	    			//EnterVotes();
-    	    		//}
 	    	       sumRow(Vote, NumberOfMember);
 	    		   return Vote;
 	    	    }
@@ -183,10 +179,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	            return sum;
 	    	            }
 	   
-	    	    	      
-	 
-	    	   
-	    	    
 		    	//----------------------------------------------
 		    	//Declaration of CreateProject()
 		    	//----------------------------------------------    
@@ -229,7 +221,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	
 	    	    	
 	    	    	return TeamMember;
-			
 	    	    }
 	    	    
 		    	//----------------------------------------------
@@ -243,8 +234,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();
 	    	    }
-	    	   
-   	    	
+	    	 	
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------  

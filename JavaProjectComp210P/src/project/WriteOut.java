@@ -17,16 +17,16 @@ import java.util.Scanner;
    
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
-		//String fileName="ok"; //initializing the file name
-		System.out.println("Enter a file name to hold the Project:");
-	    fileName = scan.nextLine( );
+		
+	    fileName = ProjectName;
 	    File fileObject = new File(fileName+".txt");
 	    while (fileObject.exists( ))
 	    {
 	        System.out.println("There already is a file named "
 	        + fileName);
-	        System.out.println("Enter a different file name:");
+	        System.out.println("Enter a different project name:");
 	        fileName = scan.nextLine( );
+	        ProjectName=fileName; //the Project Name is now the new file name
 	        fileObject = new File(fileName+".txt");
 	    }
     	PrintWriter outputStream = null;
@@ -60,7 +60,6 @@ import java.util.Scanner;
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName+".txt", true));
                 bw.append(content);
                 System.out.println("Done"); //Test to see if this is being called
-                
                 bw.flush();
                 bw.close();
                
