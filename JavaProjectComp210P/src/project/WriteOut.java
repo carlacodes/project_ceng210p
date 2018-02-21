@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
+
 import java.util.Scanner;
     public class WriteOut {
     private int NumberOfMember;
@@ -17,7 +17,7 @@ import java.util.Scanner;
    
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
     	Scanner scan = new Scanner(System.in);
-		String fileName="ok"; //initializing the file name
+		//String fileName="ok"; //initializing the file name
 		System.out.println("Enter a file name to hold the Project:");
 	    fileName = scan.nextLine( );
 	    File fileObject = new File(fileName+".txt");
@@ -40,41 +40,42 @@ import java.util.Scanner;
 	        System.out.println("Error opening the file " + fileName +".txt");
 	        System.exit(0);
 	    }
+		//The first line is printed out as the Project Name
+		outputStream.println("Project Name:"+ProjectName+"\nNumber of Members:"+ NumberOfMember);
     	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
     	{
     		//Statement of variable allocation to corresponding member position
     		outputStream.println("Team Member"+(MemberCount)+ ":"+TeamMember[MemberCount - 1]);
     	}
-    	outputStream.println("Number of Members:"+ NumberOfMember+ "\nProject Name:"+ProjectName);
     	outputStream.close();
-    	scan.close();
+    	
     	return NumberOfMember;
-        }
-    
+        } 
         public int[][] SecondExport(int[][] Vote)  {
         	System.out.println("hello"); //test to see if this is being called correctly
-			//PrintWriter outputStream=null
+			
         	try 
             {
-                String content = "This is the content to write into file";
+                String content = "This is the content to write into file"; //Test content
                 BufferedWriter bw = new BufferedWriter(new FileWriter(fileName+".txt", true));
                 bw.append(content);
-                System.out.println("Done");
+                System.out.println("Done"); //Test to see if this is being called
+                
+                bw.flush();
                 bw.close();
+               
             } catch (IOException e) 
             {
                 e.printStackTrace();
             }
-        	
-        	 
 			return Vote;
    
         }
-      
+      //outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
     }
     
    
-	//outputStream.println("Votes for"+ TeamMember[i-1]+":"+Vote[i-1]);
+	
     
     
     
