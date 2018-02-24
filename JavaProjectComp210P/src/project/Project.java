@@ -1,5 +1,6 @@
 package project;	
 
+import java.util.ArrayList;
 ///------------------------------------------------------------
 	///
 	///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT, DELIVERABLE 1
@@ -7,15 +8,18 @@ package project;
 	///------------------------------------------------------------
 	import java.util.Scanner; 			//Importing the scanner tool 
 import java.util.stream.IntStream; //for summing arrays
+import java.util.List;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	public class Project
-	{
+	{ArrayList<ProjectProp> ProjectList = new ArrayList <ProjectProp>();
 		public static void main(String[] args)
 	    {
 			Project run = new Project();
-			run.StartMenu();		 
+			run.StartMenu();
+			
+			
 	    }
 		
 	    	public static String option; //Declaring the strings representing the menu option buttons
@@ -27,19 +31,18 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
+	    	
 	    	public String fileName;
 	    	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
 	        DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
 	        //----------------------------------------------
 	        //Declaration of StartMenu(): listing Menu Options and equalsIgnoreCase to accept either upper or lower case
 	        //----------------------------------------------
-	    	    Project(){
-	    	    	
-	    	    }
-	    	    
+	    	   
 	        	public void StartMenu()   			
 	    	    {          
 	    	      Scanner scan = new Scanner(System.in);
+	    	      ArrayList<ProjectProp> ProjectList = new ArrayList <ProjectProp>();
 	    	      System.out.println(); 					
 	    	      System.out.print("\nWelcome to Splitit ");
 	    	      do
@@ -61,8 +64,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	  	              About();              
 	  	          }
 	    	    	else if (OneInput.equalsIgnoreCase("C") == true) 
+	    	    		
 	  	      	  {
-	    	    		CreateProjectTitle();
+	    	    		
+	    	    		CreateNewProjectArray();
 	  	      	  }
 	    	    	else if (OneInput.equalsIgnoreCase("V") == true) 
 	  	      	  {
@@ -100,7 +105,24 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    {
 	    	    	System.out.println("\tThis is a program designed to assign grades for a project based on each member's \n \tparticipation developed by Carla Griffiths and Louis Nguyen. ");	    	        
 	    	    }      	
-
+	    	    
+	    	  //----------------------------------------------
+		    	//Declaration of CreateProjectArray() method
+		    	//----------------------------------------------    
+	    	    public void CreateNewProjectArray(){
+	    	    	
+					ProjectList.add(new ProjectProp());
+					for (int i=0; i<ProjectList.size(); i++){
+					    ProjectList.get(i).CreateProjectTitle();//this will set names in format newNameX
+					    ProjectList.get(i).CreateProjectNumberofMembers();
+					    ProjectList.get(i).CreateProjectNamesofMembers();
+					    System.out.println("Hello");
+					    ///EXTRA--ADDED IN TO TEST THE SIZE OF THE LIST ARRAY
+					    System.out.println("Number of Projects Created:"+ ProjectList.size());
+						//System.out.println("Number of members: " + ProjectList.CreateProjectNumberofMembers()); 
+						
+					}
+	    	    }
 	    	//----------------------------------------------
 	    	//Declaration of ShowProject()
 	    	//----------------------------------------------    
@@ -132,96 +154,20 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//----------------------------------------------
 		    	//Declaration of EnterVotes()
 		    	//----------------------------------------------    
-	    	    public int[][] EnterVotes()
+	    	    public void EnterVotes()
 	    	    {   
-	    	    	CorrectInput=true;
-	    	    	Vote = new int [NumberOfMember][index];
-	    	    	index=NumberOfMember;
-	    	    	if (NumberOfMember==0) {
-	    	    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
-	    	    		ShowMenu=true;
-	    	    	}
-	    	    	CheckProjectName check = new CheckProjectName();
-	    	    	check.CheckName(NumberOfMember, ProjectName, TeamMember);
-	    	    	for (int row=0; row < Vote.length; row++)
-	    	    	{
-	    	    		System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
-	    	    	    System.out.println();
-	    	    		for (int col=0; col < Vote[row].length; col++)
-	    	    	    { 
-	    	    	        System.out.println("Enter "+TeamMember[row]+ "'s points for"+ TeamMember[col]+":");
-	    	    	        Vote[row][col] = scan.nextInt(); 
-	    	    	    }
-	    	    	}
-	    	       sumRow(Vote, NumberOfMember);
-	    		   return Vote;
-	    	    }
-	    	    public int[] sumRow(int[][] Vote, int NumberOfMember) 
-	    	    {
-	    	    	 int sum[] = new int[NumberOfMember];
-	    	    	  
-	    	            for (int i = 0; i < Vote.length; i++){
-	    	            int total = 0;
-	    	            for (int j = 0; j < Vote[0].length; j++)
-	               	    total +=Vote[i][j];
-	    	            sum[i] = total;}
-	    	            
-	    	            
-	    	            for(int i = 1; i < sum.length; i++)
-	    	            {
-	    	              if (sum[i] != 100) {
-	    	            	  System.out.println("Please Make Sure the points add to 100!");
-	    	            	  EnterVotes();
-	    	              }
-	    	            }
-	    	            WriteOut getsecond = new WriteOut();
-	    	            getsecond.SecondExport(Vote);
-	    	            return sum;
-	    	            }
-	   
-		    	//----------------------------------------------
-		    	//Declaration of CreateProject()
-		    	//----------------------------------------------    
-	    	    
-	    	    public String CreateProjectTitle()
-	    	    {  
-	    	    	
-	    	    	CorrectInput = true; 										
-	    	    	ShowMenu = true; 											//Still show Menu
-	    	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
-	    	    	ProjectName = scan.next();
-	    	    	CreateProjectNumberofMembers(); //calling methods within the resulting methods
-  	      		  	CreateProjectNamesofMembers();
-					return ProjectName;
+					System.out.println("Enter the Project Name");
+					String userinput = scan.nextLine();
+	    	    	for (int i=0; i<ProjectList.size(); i++){
+	    	    		if (userinput.equals(ProjectList.get(i).ProjectName))
+	    	    		{
+	    	    			System.out.println("Correct, there are "+ProjectList.get(i).getNumberOfMember()+"Member(s)");
+	    	    		}
+						ProjectList.get(i).PropVotes();
 					}
-	    	    
-	    	    public int CreateProjectNumberofMembers(){ //ENTER NUMBER OF TEAM MEMBERS
-	    	    	System.out.print("\tEnter the number of team members: ");	//Asking user to input a number for all members count
-	    	    	NumberOfMember = scan.nextInt();
-	    	    	System.out.print("\n");
-					return NumberOfMember;			
+	    	    	
 	    	    }
-	    	    
-	    	    public String[] CreateProjectNamesofMembers(){ 
-	    	    	TeamMember = new String[NumberOfMember];
-	    	    	
-	    	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
-	    	    	{
-	    	    		//Statement of variable allocation to corresponding member position
-	    	    		System.out.print("\tEnter the name of team member " + MemberCount + ": ");
-	    	    		TeamMember[MemberCount - 1] = scan.next();
-	    	    		
-	    	    	}
-	    	        	
-	    	    	WriteOut getThings2= new WriteOut();
-	    	    	getThings2.FirstExport(NumberOfMember, ProjectName, TeamMember);
-	    	    	System.out.print("Press any key to return to the main menu: ");
-	    	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
-	    	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to tr 
-	    	    	
-	    	    	
-	    	    	return TeamMember;
-	    	    }
+	    	       	
 	    	    
 		    	//----------------------------------------------
 		    	//Declaration of Quit() method
@@ -231,6 +177,11 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	CorrectInput = true; 				
 	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
 	    	    	//WriteOut();
+	    	    	//WriteOut getThings2= new WriteOut();
+	    	    	//getThings2.FirstExport(NumberOfMember, ProjectName, TeamMember);
+	    	    	
+	    	    	//ArrayList<ProjectProp> ProjectList = new ArrayList <ProjectProp>();
+	    	    	
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();
 	    	    }
@@ -238,10 +189,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------  
-	    	    private String getNumberOfMember()
-	    	    {
-	    	    	return Integer.toString(NumberOfMember);
-	    	    }
+	    	    
 	    	    private String getProjectName(int NumberOfProjects)
 	    	    {
 	    	    	return ProjectName;
