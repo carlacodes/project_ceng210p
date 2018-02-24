@@ -114,9 +114,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 					ProjectList.add(new ProjectProp());
 					for (int i=0; i<ProjectList.size(); i++){
 					    ProjectList.get(i).CreateProjectTitle();//this will set names in format newNameX
-					    ProjectList.get(i).CreateProjectNumberofMembers();
-					    ProjectList.get(i).CreateProjectNamesofMembers();
-					    System.out.println("Hello");
 					    ///EXTRA--ADDED IN TO TEST THE SIZE OF THE LIST ARRAY
 					    System.out.println("Number of Projects Created:"+ ProjectList.size());
 						//System.out.println("Number of members: " + ProjectList.CreateProjectNumberofMembers()); 
@@ -176,11 +173,9 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    {
 	    	    	CorrectInput = true; 				
 	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
-	    	    	//WriteOut();
-	    	    	//WriteOut getThings2= new WriteOut();
-	    	    	//getThings2.FirstExport(NumberOfMember, ProjectName, TeamMember);
-	    	    	
-	    	    	//ArrayList<ProjectProp> ProjectList = new ArrayList <ProjectProp>();
+	    	       for (int i=0; i<ProjectList.size(); i++){
+						ProjectList.get(i).callWriteOut();
+					}
 	    	    	
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();

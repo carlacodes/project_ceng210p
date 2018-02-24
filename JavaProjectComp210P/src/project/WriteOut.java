@@ -22,8 +22,6 @@ import java.util.Scanner;
 	    File fileObject = new File(fileName+".txt");
 	    while (fileObject.exists( ))
 	    {
-	        System.out.println("There already is a file named "
-	        + fileName);
 	        System.out.println("Enter a different project name:");
 	        fileName = scan.nextLine( );
 	        ProjectName=fileName; //the Project Name now ALSO represents the file name. 
