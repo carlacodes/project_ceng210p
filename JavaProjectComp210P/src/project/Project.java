@@ -66,7 +66,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	else if (OneInput.equalsIgnoreCase("C") == true) 
 	    	    		
 	  	      	  {
-	    	    		
 	    	    		CreateNewProjectArray();
 	  	      	  }
 	    	    	else if (OneInput.equalsIgnoreCase("V") == true) 
@@ -112,13 +111,17 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    public void CreateNewProjectArray(){
 	    	    	
 					ProjectList.add(new ProjectProp());
-					for (int i=0; i<ProjectList.size(); i++){
-					    ProjectList.get(i).CreateProjectTitle();//this will set names in format newNameX
+					ProjectProp create = new ProjectProp();
+					create.CreateProjectTitle();
+					
+					// ProjectList.CreateProjectTitle();
+					//for (int i=0; i<ProjectList.size(); i++){
+					    //ProjectList.get(i).CreateProjectTitle();//this will set names in format newNameX
 					    ///EXTRA--ADDED IN TO TEST THE SIZE OF THE LIST ARRAY
 					    System.out.println("Number of Projects Created:"+ ProjectList.size());
 						//System.out.println("Number of members: " + ProjectList.CreateProjectNumberofMembers()); 
-						
-					}
+					    
+					//}
 	    	    }
 	    	//----------------------------------------------
 	    	//Declaration of ShowProject()

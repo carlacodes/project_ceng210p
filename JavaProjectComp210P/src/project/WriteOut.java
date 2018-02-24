@@ -16,36 +16,7 @@ import java.util.Scanner;
     private int[][] Vote;
    
     public int FirstExport(int NumberOfMember, String ProjectName, String[] TeamMember) {
-    	Scanner scan = new Scanner(System.in);
-		
-	    fileName = ProjectName;
-	    File fileObject = new File(fileName+".txt");
-	    while (fileObject.exists( ))
-	    {
-	        System.out.println("Enter a different project name:");
-	        fileName = scan.nextLine( );
-	        ProjectName=fileName; //the Project Name now ALSO represents the file name. 
-	        fileObject = new File(fileName+".txt");
-	    }
-    	PrintWriter outputStream = null;
-		try
-	    {
-	        outputStream =
-	             new PrintWriter(new FileOutputStream(fileName+".txt"));
-	    }
-	    catch(FileNotFoundException e)
-	    {
-	        System.out.println("Error opening the file" + fileName +".txt");
-	        System.exit(0);
-	    }
-		//The first line is printed out as the Project Name
-		outputStream.print(ProjectName+","+ NumberOfMember+","); //Project Name and Number of Members exported
-    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
-    	{
-    		//Statement of variable allocation to corresponding member position
-    		outputStream.print(TeamMember[MemberCount - 1]+",");
-    	}
-    	outputStream.close();
+    	
     	
     	return NumberOfMember;
         } 
