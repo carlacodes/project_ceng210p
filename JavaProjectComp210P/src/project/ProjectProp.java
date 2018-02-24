@@ -54,12 +54,7 @@ class ProjectProp {
 	    	System.out.print("Press any key to return to the main menu: ");
 	    	String DummyInput = scan.next(); 	//This is a dummy variable where the input is never used again
 	    	ShowMenu = true; 					//Irrespective of the input, the menu will be shown again by assigning this boolean to tr 
-	    	
-	    	
-	    	//for (ProjectProp elem: ProjectList) {
-	    		//System.out.print(elem+" ");
-	    	//}
-	    	
+	  
 	    	return this.TeamMember;
 	    }
 	    public int[][] PropVotes(){
@@ -70,27 +65,32 @@ class ProjectProp {
     		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
     		ShowMenu=true;
     	}
-    	//CheckProjectName check = new CheckProjectName();
-    	//check.CheckName(NumberOfMember, ProjectName, TeamMember);
+    	//initially assigning all values in the Vote Matrix to 0
     	for (int row = 0; row < Vote.length; row++)
     	{
     	    for (int col = 0; col < this.Vote[row].length; col++)
     	    { 
     			this.Vote[row][col] = 0;
     	        
-    	        }}
+    	        }
+    	    }
     	
     	for (int row = 0; row < Vote.length; row++)
     	{
     		System.out.println("Enter "+ this.TeamMember[row]+"'s votes, points must add up to 100:");
     	    System.out.println();
-    	    
-    		for (int col=0; col < this.Vote[row].length && col != row; col++)
-    	    { 
+    	   
+    		for (int col=0; col < this.Vote[row].length; col++ )
+    	    {  if (col == row) {
+	        	continue;
+	        }
     			System.out.println("Enter "+this.TeamMember[row]+ "'s points for "+ this.TeamMember[col]+":");
     	        this.Vote[row][col] = scan.nextInt();
+    	        
+    	        
     	    }
     		
+    		// && col != row;
     	}    	
     	sumRow(Vote, NumberOfMember);
 	   return this.Vote;

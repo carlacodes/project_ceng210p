@@ -173,13 +173,11 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 					}
 	    	    	
 	    	    }
-	    	       	
-	    	    
+	    	       
 		    	//----------------------------------------------
 		    	//Declaration of Quit() method
 		    	//----------------------------------------------    
 	    	    public void Quit()
-	    	    
 	    	    {   
 	    	    	System.out.println(ProjectList.get(0).ProjectName);
 	    	    	File fileObject = new File("results.txt");
@@ -198,19 +196,20 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    		    }
 	    	       for (int i=0; i<ProjectList.size(); i++){
 	    	    	   outputStream.print(ProjectList.get(i).ProjectName+","+ ProjectList.get(i).NumberOfMember +","); //Project Name and Number of Members exported
-	    	    	   for (int Membercount = 0; Membercount < (ProjectList.get(i).NumberOfMember)/2; Membercount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
-	    	    	   {   //Issue for later because now you need 2 members for this not to repeat
+	    	    	   for (int Membercount = 0; Membercount < ProjectList.get(i).NumberOfMember; Membercount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	   {   
 	    	    		   outputStream.print(ProjectList.get(i).TeamMember[Membercount]);
+	    	    		   outputStream.print(",");
 	    	               //END OF LIST OF MEMBERS
 	    	    	   }
-	    	    	   
+	    	 
 	    	    	   for (int CountingIndex = 0; CountingIndex < ProjectList.get(i).NumberOfMember; CountingIndex ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	   {   
 	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex]);
-	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
+	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++)
 	    	    		   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);
 	    	    	   }
-	    	    		   
+	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
 					
 	    	       }
 	    	       
