@@ -9,11 +9,15 @@ import java.util.ArrayList;
 	import java.util.Scanner; 			//Importing the scanner tool 
 import java.util.stream.IntStream; //for summing arrays
 import java.util.List;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.text.DecimalFormat; 	//Importing the decimal tool
 
 	public class Project
 	{ArrayList<ProjectProp> ProjectList = new ArrayList <ProjectProp>();
+	private static int i = 0;
 		public static void main(String[] args)
 	    {
 			Project run = new Project();
@@ -31,8 +35,6 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
-	    	
-	    	public String fileName;
 	    	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
 	        DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");  //Although not used currently, having a decimal formatter could come in handy later
 	        //----------------------------------------------
@@ -111,14 +113,15 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    public void CreateNewProjectArray(){
 	    	    	
 					ProjectList.add(new ProjectProp());
-					ProjectProp create = new ProjectProp();
-					create.CreateProjectTitle();
+					//ProjectProp create = new ProjectProp();
+					ProjectList.get(i).CreateProjectTitle();
+					i++;
 					
 					// ProjectList.CreateProjectTitle();
 					//for (int i=0; i<ProjectList.size(); i++){
 					    //ProjectList.get(i).CreateProjectTitle();//this will set names in format newNameX
 					    ///EXTRA--ADDED IN TO TEST THE SIZE OF THE LIST ARRAY
-					    System.out.println("Number of Projects Created:"+ ProjectList.size());
+					    System.out.println("Number of Projects Created: " + ProjectList.size());
 						//System.out.println("Number of members: " + ProjectList.CreateProjectNumberofMembers()); 
 					    
 					//}
@@ -173,12 +176,44 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		    	//Declaration of Quit() method
 		    	//----------------------------------------------    
 	    	    public void Quit()
-	    	    {
+	    	    
+	    	    {   
+	    	    	System.out.println(ProjectList.get(0).ProjectName);
+	    	    	File fileObject = new File("results.txt");
 	    	    	CorrectInput = true; 				
 	    	    	ShowMenu = false; 					//if ShowMenu is false, the program's menu will terminate
+	    	    	PrintWriter outputStream = null;
+	    	    	try
+	    		    {
+	    		        outputStream =
+	    		             new PrintWriter(new FileOutputStream("results.txt"));
+	    		    }
+	    		    catch(FileNotFoundException e)
+	    		    {
+	    		        System.out.println("Error opening the file" +"results.txt");
+	    		        System.exit(0);
+	    		    }
 	    	       for (int i=0; i<ProjectList.size(); i++){
-						ProjectList.get(i).callWriteOut();
-					}
+	    	    	   outputStream.print(ProjectList.get(i).ProjectName+","+ ProjectList.get(i).NumberOfMember +","); //Project Name and Number of Members exported
+	    	    	   for (int Membercount = 0; Membercount < (ProjectList.get(i).NumberOfMember)/2; Membercount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	   {   //Issue for later because now you need 2 members for this not to repeat
+	    	    		   outputStream.print(ProjectList.get(i).TeamMember[Membercount]);
+	    	               //END OF LIST OF MEMBERS
+	    	    	   }
+	    	    	   
+	    	    	   for (int CountingIndex = 0; CountingIndex < ProjectList.get(i).NumberOfMember; CountingIndex ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
+	    	    	   {   
+	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex]);
+	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
+	    	    		   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);
+	    	    	   }
+	    	    		   
+					
+	    	       }
+	    	       
+	   	    
+	   	    	outputStream.close();
+
 	    	    	
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();
