@@ -86,11 +86,7 @@ class ProjectProp {
 	        }
     			System.out.println("Enter "+this.TeamMember[row]+ "'s points for "+ this.TeamMember[col]+":");
     	        this.Vote[row][col] = scan.nextInt();
-    	        
-    	        
     	    }
-    		
-    		// && col != row;
     	}    	
     	sumRow(Vote, NumberOfMember);
 	   return this.Vote;

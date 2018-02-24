@@ -24,9 +24,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 		public static void main(String[] args)
 	    {
 			Project run = new Project();
-			run.StartMenu();
-			
-			
+			run.StartMenu();	
 	    }
 		
 	    	public static String option; //Declaring the strings representing the menu option buttons
@@ -198,6 +196,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	   outputStream.print(ProjectList.get(i).ProjectName+","+ ProjectList.get(i).NumberOfMember +","); //Project Name and Number of Members exported
 	    	    	   for (int Membercount = 0; Membercount < ProjectList.get(i).NumberOfMember; Membercount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	   {   
+	    	    		  
 	    	    		   outputStream.print(ProjectList.get(i).TeamMember[Membercount]);
 	    	    		   outputStream.print(",");
 	    	               //END OF LIST OF MEMBERS
@@ -207,7 +206,8 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	   {   
 	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex]);
 	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++)
-	    	    		   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);
+	    	    		   if(CountingIndex!=CountedIndex) {
+	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);}
 	    	    	   }
 	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
 					
