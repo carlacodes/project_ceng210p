@@ -208,6 +208,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex] + ",");
 	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++)
 	    	    		   if(CountingIndex!=CountedIndex) {
+	    	    			   outputStream.print(ProjectList.get(i).TeamMember[CountedIndex] + ",");
 	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex] + ",");}
 	    	    	   }
 	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
