@@ -165,11 +165,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	for (int i=0; i<ProjectList.size(); i++){
 	    	    		if (userinput.equals(ProjectList.get(i).ProjectName))
 	    	    		{
-	    	    			System.out.println("Correct, there are "+ProjectList.get(i).getNumberOfMember()+"Member(s)");
+	    	    			System.out.println("Correct, there are "+ ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember)+" Member(s)");  
 	    	    		}
 						ProjectList.get(i).PropVotes();
-					}
-	    	    	
+					}	
 	    	    }
 	    	       
 		    	//----------------------------------------------
@@ -210,9 +209,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);}
 	    	    	   }
 	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
-					
-	    	       }
-	    	       
+	    	       }  
 	   	    
 	   	    	outputStream.close();
 
