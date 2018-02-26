@@ -41,7 +41,8 @@ class ProjectProp {
   	//Declaration of CreateProjectNamesofMembers()
   	//----------------------------------------------    
 	    
-	    public String[] CreateProjectNamesofMembers(){ 
+	    public String[] CreateProjectNamesofMembers()
+	    { 
 	    	TeamMember = new String[NumberOfMember];
 	    	
 	    	for (int MemberCount = 1; MemberCount <= NumberOfMember; MemberCount ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
@@ -63,7 +64,7 @@ class ProjectProp {
     	index = NumberOfMember;
     	if (NumberOfMember==0) {
     		System.out.println("\tPlease Create a Project Before Entering Votes!"); //Error Message
-    		ShowMenu=true;
+    		ShowMenu = true;
     	}
     	//initially assigning all values in the Vote Matrix to 0
     	for (int row = 0; row < Vote.length; row++)

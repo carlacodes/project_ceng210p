@@ -205,10 +205,10 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	 
 	    	    	   for (int CountingIndex = 0; CountingIndex < ProjectList.get(i).NumberOfMember; CountingIndex ++) //For as long as the member count is less than the total number of members, the program will ask for the user input
 	    	    	   {   
-	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex]);
+	    	    		   outputStream.print(ProjectList.get(i).TeamMember[CountingIndex] + ",");
 	    	    		   for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++)
 	    	    		   if(CountingIndex!=CountedIndex) {
-	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex]);}
+	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex] + ",");}
 	    	    	   }
 	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
 	    	       }  
