@@ -212,6 +212,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    			   outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex] + ",");}
 	    	    	   }
 	    	    	   //for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember && CountingIndex != CountedIndex; CountedIndex++)
+	    	       outputStream.println();
 	    	       }  
 	   	    
 	   	    	outputStream.close();
