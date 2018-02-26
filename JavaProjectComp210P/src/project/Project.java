@@ -162,12 +162,14 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    {   
 					System.out.println("Enter the Project Name");
 					String userinput = scan.nextLine();
-	    	    	for (int i=0; i<ProjectList.size(); i++){
+	    	    	for (int i=0; i<ProjectList.size(); i++)
+	    	    	{
 	    	    		if (userinput.equals(ProjectList.get(i).ProjectName))
 	    	    		{
-	    	    			System.out.println("Correct, there are "+ ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember)+" Member(s)");  
+	    	    			System.out.println("\tCorrect, there are "+ ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember)+" Member(s)");  
+	    	    			ProjectList.get(i).PropVotes();
 	    	    		}
-						ProjectList.get(i).PropVotes();
+						
 					}	
 	    	    }
 	    	       

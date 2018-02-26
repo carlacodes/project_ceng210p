@@ -24,7 +24,7 @@ class ProjectProp {
 	    	ShowMenu = true; 											//Still show Menu
 	    	System.out.print("\n\tEnter the project name: "); 			//Asking user for a project name
 	    	ProjectName = scan.next();
-	    	System.out.println("You have entered in " + ProjectName);
+	    	System.out.println("\tYou have entered in " + ProjectName);
 	    	CreateProjectNumberofMembers();
 		  
 			return ProjectName;
@@ -62,7 +62,7 @@ class ProjectProp {
     	Vote = new int [NumberOfMember][NumberOfMember];
     	index = NumberOfMember;
     	if (NumberOfMember==0) {
-    		System.out.println("Please Create a Project Before Entering Votes!"); //Error Message
+    		System.out.println("\tPlease Create a Project Before Entering Votes!"); //Error Message
     		ShowMenu=true;
     	}
     	//initially assigning all values in the Vote Matrix to 0
@@ -75,14 +75,15 @@ class ProjectProp {
     	    }
     	  
     	for (int row = 0; row < Vote.length; row++)
-    	{   System.out.println();
-    	System.out.println("Enter "+ TeamMember[row]+"'s votes, points must add up to 100:");
+    	{   //System.out.println();
+    		System.out.println("\tEnter "+ TeamMember[row]+"'s votes, points must add up to 100:");
     		for (int col=0; col < Vote[row].length; col++ )
     	    {  
-    			if (col == row) {
+    			if (col == row) 
+    			{
     				continue;
 	        	}
-    			System.out.println("Enter " + TeamMember[row]+ "'s points for "+ TeamMember[col]+":");
+    			System.out.println("\tEnter " + TeamMember[row]+ "'s points for "+ TeamMember[col]+":");
     	        Vote[row][col] = scan.nextInt();
     	    }
     		
@@ -107,7 +108,7 @@ class ProjectProp {
 	            for(int i = 1; i < sum.length; i++)
 	            {
 	              if (sum[i] != 100) {
-	            	  System.out.println("Please Make Sure the points add to 100!");
+	            	  System.out.println("\tPlease Make Sure the points add to 100!");
 	            	  PropVotes();
 	              }
 	              
