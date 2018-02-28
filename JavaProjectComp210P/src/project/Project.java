@@ -33,6 +33,7 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	public static int index=NumberOfMember; //used for later, declaring a square matrix
 	    	public static String[] TeamMember; //Declaring the strings representing the names of the members
 	    	public static int[][] Vote;
+	    	public String[] s;
 	    	
 	    	public static  String ProjectName; 	// Declaring the project name variable as a string
 	    	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
@@ -221,12 +222,16 @@ import java.text.DecimalFormat; 	//Importing the decimal tool
 	    	    	System.out.println("\tGoodbye. ");    	
 	    	    	scan.close();
 	    	    }
-	    	 	
 		    	//--------------------------------------------------------------------------------
 		    	//Declaration of toString() method to check for all variable values when necessary
 		    	//--------------------------------------------------------------------------------  
 	    	    
-	    	    private String getProjectName(int NumberOfProjects)
+	    	   
+		   	 		
+					// TODO Auto-generated method stub
+					
+				
+				private String getProjectName(int NumberOfProjects)
 	    	    {
 	    	    	return ProjectName;
 	    	    }

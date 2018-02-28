@@ -16,6 +16,7 @@ class ProjectProp {
 	private static boolean CorrectInput, ShowMenu; 	//Booleans CorrectInput, which determines whether the user has entered a valid input and ShowMenu, which determines whether the main menu is displayed again
 	static Scanner scan = new Scanner(System.in); 	// Importing the scanner tool
     DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00");
+    public String[] s;
    
 	  public String CreateProjectTitle()
 	    {  
@@ -106,7 +107,7 @@ class ProjectProp {
 	            sum[i] = total;}
 	            }
 
-	            for(int i = 1; i < sum.length; i++)
+	            for(int i = 0; i < sum.length; i++)
 	            {
 	              if (sum[i] != 100) {
 	            	  System.out.println("\tPlease Make Sure the points add to 100!");
@@ -144,6 +145,14 @@ class ProjectProp {
 			return Vote;
 			
 		}
+		
+		
+
+	       
+	      
+
+	       
+	 	
 
 		
 		
