@@ -1,65 +1,85 @@
 package project;
+public class StoreVariables 	//This is class is to be used with ShowProject() method, which is option "S"
+{
+	private int NumberOfMember;
+	private String ProjectName;
+	private String[] TeamMember;
+	private int[][] Votes;
 
-public class StoreVariables {
+	// ------------------------------------------------------------------------------------------------------
+	// Constructor of StoreVariables() to initiate ProjectName and NumberOfMember values
+	// ------------------------------------------------------------------------------------------------------	
+	public StoreVariables() 
+	{
+		NumberOfMember = 1;
+		ProjectName = "Null";
+	}
 	
-     private int NumberOfMember;
-	 private String ProjectName;
-     private String[] TeamMember;
-     private int[][] Votes;
-     
-     public StoreVariables(){ //initializing variables using a constructor
-    	NumberOfMember = 1;
-    	
-    	ProjectName = "ha ha ha ha at my life choices"; //Test to see if the class is being called correctly
-    	
-    }
-	 public int setNumberofMember (int theNumberOfMember)
-	   {
-	      NumberOfMember = theNumberOfMember;
-	      return theNumberOfMember;
-	   }
-	 
-	 public int[][] setVotes (int[][] theVotes)
-	   {
-	      Votes = theVotes;
-	      return theVotes;
-	   }
-	 
-	 public String setProjectName (String theProjectName) {
-		 ProjectName = theProjectName;
-		 return theProjectName;
-		 
-	 }
-	 
-	 public String[] setTeamMember (String[] theTeamMember) {
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of setNumberofMember() method to change number of member
+	// ------------------------------------------------------------------------------------------------------
+	public int setNumberofMember(int theNumberOfMember) 
+	{
+		NumberOfMember = theNumberOfMember;
+		return theNumberOfMember;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of setVotes() method to change votes of members
+	// ------------------------------------------------------------------------------------------------------	
+	public int[][] setVotes(int[][] theVotes) 
+	{
+		Votes = theVotes;
+		return theVotes;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of setProjectName() method to change change project name
+	// ------------------------------------------------------------------------------------------------------		
+	public String setProjectName(String theProjectName) 
+	{
+		ProjectName = theProjectName;
+		return theProjectName;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of setTeamMember() method to change team member names
+	// ------------------------------------------------------------------------------------------------------		
+	public String[] setTeamMember(String[] theTeamMember) 
+	{
 		TeamMember = theTeamMember;
 		return theTeamMember;
-		 
-	 }
-	 
-	 public int getNumberofMember(int NumberOfMember)
-	 {
-		 return NumberOfMember;
-	 }
-	 
-	 public String getProjectName(String ProjectName)
-	 {
-		
-		 return ProjectName;
-	 }
-	 
-	 public String[] getTeamMember()
-	 {
-		
-		 return TeamMember;
-		 
-	 }
-	 public int[][] getVotes (int theVotes[][])
-	   {
-		
-	      return theVotes;
-	   }
-	
-    
-   
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of getNumberofMember() method to get number of member
+	// ------------------------------------------------------------------------------------------------------			
+	public int getNumberofMember(int NumberOfMember) 
+	{
+		return NumberOfMember;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of getProjectName() method to get project names
+	// ------------------------------------------------------------------------------------------------------				
+	public String getProjectName(String ProjectName) 
+	{
+		return ProjectName;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of getTeamMember() method to get team member names
+	// ------------------------------------------------------------------------------------------------------					
+	public String[] getTeamMember() 
+	{
+		return TeamMember;
+	}
+
+	// ------------------------------------------------------------------------------------------------------
+	// Declaration of getVotes() method return member votes
+	// ------------------------------------------------------------------------------------------------------				
+	public int[][] getVotes(int theVotes[][]) 
+	{
+		return theVotes;
+	}
 }
