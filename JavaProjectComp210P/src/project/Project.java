@@ -1,34 +1,41 @@
+package project;
+
 //Option Q
 //Option V
-package project;
 import java.util.ArrayList;
 
 ///------------------------------------------------------------
 ///
-///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT, DELIVERABLE 1
+///LOUIS NGUYEN CARLA GRIFFITHS COMP210P PROJECT, DELIVERABLE 2
 ///
 ///------------------------------------------------------------
 import java.util.Scanner; //Importing the scanner tool 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat; //Importing the decimal tool
 
-public class Project 
+public class Project // Class that holds menu functionality of programme
 {
 	ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();
 	private static int i = 0;
-	public static void main(String[] args) 
-	{
+
+	public static void main(String[] args) {
 		Project run = new Project();
 		run.StartMenu();
+
 	}
-	public static String option; // Declaring the strings representing the menu option buttons
+
+	private static String option; // Declaring the strings representing the menu option buttons
 	private static int NumberOfMember; // Entering the number of members
-	public static int index = NumberOfMember; // used for later, declaring a square matrix
-	public static String[] TeamMember; // Declaring the strings representing the names of the members
-	public static int[][] Vote;
-	public String[] s;
+	private static int index = NumberOfMember; // used for later, declaring a square matrix
+	private static String[] TeamMember; // Declaring the strings representing the names of the members
+	private static int[][] Vote;
+	private String[] s;
 
 	public static String ProjectName; // Declaring the project name variable as a string
 	private static boolean CorrectInput, ShowMenu; // Booleans CorrectInput, which determines whether the user has
@@ -37,55 +44,97 @@ public class Project
 	static Scanner scan = new Scanner(System.in); // Importing the scanner tool
 	DecimalFormat twoDecPlcFormatter = new DecimalFormat("0.00"); // Although not used currently, having a decimal
 																	// formatter could come in handy later
-	// ----------------------------------------------
+	// ------------------------------------------------------------------------
 	// Declaration of StartMenu(): listing Menu Options and equalsIgnoreCase to
 	// accept either upper or lower case
-	// ----------------------------------------------
+	// ------------------------------------------------------------------------
 
-	public void StartMenu() 
-	{
+	public void StartMenu() {
 		Scanner scan = new Scanner(System.in);
-		ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();
+		ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();// Create a list with variable size that is
+																			// capable of incorporating extra projects,
+																			// allow multiple projects
 		System.out.println();
 		System.out.print("\nWelcome to Splitit ");
-		do 
-		{
+		do {
 			printMenu();
+			importResults();
 			char input = scan.next().charAt(0); // Asking user to input a character
 			option = Character.toString(input); // Converting from characters to string
 			checkInput(option);
-		} 
-		while (CorrectInput == false || ShowMenu == true); // Run StartMenu() while either the CorrectInput is false
-																// or ShowMenu is true		
+		} while (CorrectInput == false || ShowMenu == true); // Run StartMenu() while either the CorrectInput is false
+																// or ShowMenu is true
+	}
+
+	private void importResults() 
+	{
+		
+	
+		ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>();
+		   Scanner inputStream = null;
+		   
+		try
+		{
+			
+			inputStream = new Scanner(new FileReader("results.txt"));  
+		
+		}
+		catch(IOException e) {
+			System.exit(0);
+		}
+		while (inputStream.hasNextLine()) {
+			String line = "hello";
+			line = inputStream.nextLine();
+			line=line.substring(0, line.length()-1);
+			int linecounter=0;
+        	
+        	System.out.println(line);
+        	//importedProject.get(linecounter).setLine(line);
+        	linecounter++;
+ 
+        }
+		
+		
+		
+	//	for line=0 to end{
+		//while has next line{
+	    	
+	    	
+	    	
+	    //}
+	     
+	    //}
+		
+		//add element to list array
+		//repeat until line/file ends
+		
+		//scan each line
+		//each line is a new element in this LISTARRAY
+		
+		//each line is a new element in the fucking imported user data arraylist
+		
+		//FOR STOREVARIABLES:
+		//votes and names will be in storevariables 
+		//now storevaribles is the basic read/write and has 
+		//later can try to make private class and use extend 
+
 	}
 
 	// ----------------------------------------------
 	// Declaration of checkInput(String OneInput) method
 	// ----------------------------------------------
-	private void checkInput(String OneInput) 
-	{
-		if (OneInput.equalsIgnoreCase("A") == true) 
-		{
+	private void checkInput(String OneInput) {
+		if (OneInput.equalsIgnoreCase("A") == true) {
 			About();
-		} 
-		else if (OneInput.equalsIgnoreCase("C") == true)
-		{
+		} else if (OneInput.equalsIgnoreCase("C") == true) {
 			CreateNewProjectArray();
-		} 
-		else if (OneInput.equalsIgnoreCase("V") == true) 
-		{
+		} else if (OneInput.equalsIgnoreCase("V") == true) {
 			EnterVotes();
-		} 
-		else if (OneInput.equalsIgnoreCase("S") == true) 
-		{
+		} else if (OneInput.equalsIgnoreCase("S") == true) {
 			ShowProject();
-		} 
-		else if (OneInput.equalsIgnoreCase("Q") == true) 
-		{
+		} else if (OneInput.equalsIgnoreCase("Q") == true) {
 			Quit();
-		}
-		else 
-		{
+		} else {
 			System.out.print("\tIncorrect input. "); // If the user has entered an incorrect input, force them to enter
 														// in correct input
 			CorrectInput = false;
@@ -95,8 +144,7 @@ public class Project
 	// --------------------------------------------------------
 	// Declaration of printMenu() method to print out menu text
 	// --------------------------------------------------------
-	private void printMenu() 
-	{
+	private void printMenu() {
 		System.out.println("\n\n\tAbout\t\t(A)");
 		System.out.println("\tCreate Project\t(C)");
 		System.out.println("\tEnter Votes\t(V)");
@@ -108,18 +156,36 @@ public class Project
 	// ----------------------------------------------
 	// Declaration of About() method
 	// ----------------------------------------------
-	public void About() 
-	{
-		System.out.println("\tThis is a program designed to assign grades for a project based on each member's \n \tparticipation developed by Carla Griffiths and Louis Nguyen. ");
+	public void About() {
+		System.out.println(
+				"\tThis is a program designed to assign grades for a project based on each member's \n \tparticipation developed by Carla Griffiths and Louis Nguyen. ");
 	}
 
 	// ----------------------------------------------
 	// Declaration of CreateProjectArray() method
 	// ----------------------------------------------
-	public void CreateNewProjectArray() 
-	{
-		ProjectList.add(new ProjectProp());
-		ProjectList.get(i).CreateProjectTitle();
+	public void CreateNewProjectArray() {
+		CorrectInput = true;
+		ShowMenu = true;
+		ProjectList.add(new ProjectProp()); // Create adding a new item to ProjectList to refer to new Project
+		boolean repeat = true;
+		while (repeat == true) {
+			ProjectList.get(i).CreateProjectTitle();
+			if (i != 0) {
+				for (int counter = 0; counter < i; counter++) {
+					if (ProjectList.get(counter).ProjectName.equals(ProjectList.get(i).ProjectName)) {
+						System.out.println("\tThis project names has already existed. Please enter another name.");
+						repeat = true;
+						break;
+					} else {
+						repeat = false;
+					}
+				}
+			} else {
+				repeat = false;
+			}
+		}
+		ProjectList.get(i).CreateProjectNumberofMembers();
 		i++;
 		System.out.println("Number of Projects Created: " + ProjectList.size());
 	}
@@ -127,81 +193,100 @@ public class Project
 	// ----------------------------------------------
 	// Declaration of ShowProject()
 	// ----------------------------------------------
-	public void ShowProject() 
-	{
+	public void ShowProject() {
 		CorrectInput = true;
 		ShowMenu = true;
-		StoreVariables getThings = new StoreVariables();
-		System.out.println("Number of members: " + getThings.getNumberofMember(NumberOfMember));
-		System.out.println("Project name: " + getThings.getProjectName(ProjectName));
-
-		String[] abc = getThings.getTeamMember();
-		for (int Counter = 1; Counter <= NumberOfMember; Counter++) // Returning each team member's name and
-																	// corresponding member number
-		{
-			System.out.println("Name of member " + Counter + " : " + getTeamMemberName(Counter));
-		}
-
-		for (int Counter = 1; Counter <= NumberOfMember; Counter++) // Returning each team member's name and
-																	// corresponding member number
-		{
-			System.out.println("Votes for Member " + TeamMember[Counter - 1] + " : ");
-			System.out.print(getThings.getVotes(Vote));
-		}
+		
 	}
 
 	// ----------------------------------------------
 	// Declaration of EnterVotes()
 	// ----------------------------------------------
-	public void EnterVotes() 
-	{
-		System.out.println("Enter the Project Name");
-		String userinput = scan.nextLine();
-		for (int i = 0; i < ProjectList.size(); i++) 
-		{
-			if (userinput.equals(ProjectList.get(i).ProjectName)) 
+	public void EnterVotes() {
+		boolean inputCorrect = false;
+
+		while (inputCorrect == false) {
+			if (ProjectList.size() == 0) // Check if project has been created
 			{
-				System.out.println("\tThere are " + ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember) + " Member(s)");
-				ProjectList.get(i).PropVotes();
+				System.out.println("\tPlease create a project.");
+				break;
 			}
+			System.out.print("\tEnter the Project Name: ");
+			String userinput = scan.nextLine();
+
+			for (int i = 0; i < ProjectList.size(); i++) {
+
+				if (userinput.equals(ProjectList.get(i).ProjectName)) {
+					inputCorrect = true;
+					System.out.println("\tThere are "
+							+ ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember) + " member(s)");
+					ProjectList.get(i).PropVotes();
+					break;
+				}
+
+			}
+
+			// System.out.println("\tProject name cannot be found. Please re-enter project
+			// name. ");
 		}
 	}
 
-	// ----------------------------------------------
-	// Declaration of Quit() method
-	// ----------------------------------------------
-	public void Quit() 
-	{
-		
+	// -----------------------------------------------------------------------
+	// Declaration of Quit() method and export the latest votes to resutls.txt
+	// -----------------------------------------------------------------------
+	public void Quit() {
 		CorrectInput = true;
 		ShowMenu = false; // if ShowMenu is false, the program's menu will terminate
 		PrintWriter outputStream = null;
-		try 
-		{
+		try {
 			outputStream = new PrintWriter(new FileOutputStream("results.txt"));
-		} 
-		catch (FileNotFoundException e) 
-		{
+		} catch (FileNotFoundException e) {
 			System.out.println("Error opening the file" + "results.txt");
 			System.exit(0);
 		}
-		for (int i = 0; i < ProjectList.size(); i++) 
-		{
-			outputStream.print(ProjectList.get(i).ProjectName + "," + ProjectList.get(i).NumberOfMember + ","); // Project Name and Number of Members exported
-			for (int Membercount = 0; Membercount < ProjectList.get(i).NumberOfMember; Membercount++) // For as long as the member count is less than the total number of members, the program will ask for the user input
+		for (int i = 0; i < ProjectList.size(); i++) {
+			outputStream.print(ProjectList.get(i).ProjectName + "," + ProjectList.get(i).NumberOfMember + ","); // Project
+																												// Name
+																												// and
+																												// Number
+																												// of
+																												// Members
+																												// exported
+			for (int Membercount = 0; Membercount < ProjectList.get(i).NumberOfMember; Membercount++) // For as long as
+																										// the member
+																										// count is less
+																										// than the
+																										// total number
+																										// of members,
+																										// the program
+																										// will ask for
+																										// the user
+																										// input
 			{
 
 				outputStream.print(ProjectList.get(i).TeamMember[Membercount]);
 				outputStream.print(",");
 				// END OF LIST OF MEMBERS
 			}
-			for (int CountingIndex = 0; CountingIndex < ProjectList.get(i).NumberOfMember; CountingIndex++) // For as long as the member count is less than the total number of members, the program will ask for the user input
+			for (int CountingIndex = 0; CountingIndex < ProjectList.get(i).NumberOfMember; CountingIndex++) // For as
+																											// long as
+																											// the
+																											// member
+																											// count is
+																											// less than
+																											// the total
+																											// number of
+																											// members,
+																											// the
+																											// program
+																											// will ask
+																											// for the
+																											// user
+																											// input
 			{
 				outputStream.print(ProjectList.get(i).TeamMember[CountingIndex] + ",");
-				for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++)
-				{
-					if (CountingIndex != CountedIndex) 
-					{ 
+				for (int CountedIndex = 0; CountedIndex < ProjectList.get(i).NumberOfMember; CountedIndex++) {
+					if (CountingIndex != CountedIndex) {
 						outputStream.print(ProjectList.get(i).TeamMember[CountedIndex] + ",");
 						outputStream.print(ProjectList.get(i).Vote[CountingIndex][CountedIndex] + ",");
 					}
@@ -214,20 +299,18 @@ public class Project
 		scan.close();
 	}
 
-	// TODO Auto-generated method stub
 	// --------------------------------------------------------------------------------
-	// Declaration of getProjectName() method to return project names
+	// Declaration of getProjectName() private helper method to return project names
 	// --------------------------------------------------------------------------------
-	private String getProjectName(int NumberOfProjects) 
-	{
+	private String getProjectName(int NumberOfProjects) {
 		return ProjectName;
 	}
 
 	// --------------------------------------------------------------------------------
-	// Declaration of getTeamMemberName() method to return member names
+	// Declaration of getTeamMemberName() private helper method to return member
+	// names
 	// --------------------------------------------------------------------------------
-	private String getTeamMemberName(int index) 
-	{
+	private String getTeamMemberName(int index) {
 		return TeamMember[index - 1];
 	}
 }

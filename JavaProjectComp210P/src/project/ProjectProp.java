@@ -1,7 +1,9 @@
 package project;
+
 import java.text.DecimalFormat;
 import java.util.Scanner;
-class ProjectProp 
+import java.util.InputMismatchException;
+public class ProjectProp //Class that holds properties of each project
 {
 	public static String option; // Declaring the strings representing the menu option buttons
 	public int NumberOfMember; // Entering the number of members
@@ -19,24 +21,34 @@ class ProjectProp
 	// Declaration of CreateProjectTitle() method to create project names
 	// --------------------------------------------------------------------------------
 	public String CreateProjectTitle() 
-	{
-		CorrectInput = true;
-		ShowMenu = true; 
+	{		
 		System.out.print("\n\tEnter the project name: "); // Asking user for a project name
-		ProjectName = scan.next();
-		System.out.println("\tYou have entered in " + ProjectName);
-		CreateProjectNumberofMembers();
+		ProjectName = scan.next();    
+		System.out.println("\tYou have entered in " + ProjectName);		
 		return ProjectName;
 	}
-	
+  
 	// ----------------------------------------------------------------------------------------
 	// Declaration of CreateProjectNumberofMembers() method to return number of the new project
 	// ----------------------------------------------------------------------------------------
 	public int CreateProjectNumberofMembers() 
 	{
-		System.out.print("\tEnter the number of team members: "); // Asking user to input a number for all members count
-		NumberOfMember = scan.nextInt();
-		System.out.print("\n");
+    boolean inputSuccessful = false;
+    while (inputSuccessful == false)
+    {
+      System.out.print("\tEnter the number of team members: "); // Asking user to input a number for all members count      
+      try//ask the user to repeat until input is an integer
+      {
+        NumberOfMember = scan.nextInt();
+        System.out.print("\n");
+        inputSuccessful = true;
+      }
+      catch (InputMismatchException e)
+      {
+        scan.nextLine();
+        System.out.println("\tYou didn't enter a whole number. Please try again. ");
+      }
+    }		
 		CreateProjectNamesofMembers();
 		return NumberOfMember;
 	}
@@ -65,7 +77,8 @@ class ProjectProp
 	// ------------------------------------------------
 	// Declaration of PropVotes() method to enter votes
 	// ------------------------------------------------	
-	public int[][] PropVotes() {
+	public int[][] PropVotes() 
+	{
 		CorrectInput = true;
 		Vote = new int[NumberOfMember][NumberOfMember];
 		index = NumberOfMember;
@@ -81,7 +94,8 @@ class ProjectProp
 				Vote[row][col] = 0;
 			}
 		}
-
+    do
+    {
 		for (int row = 0; row < Vote.length; row++) 
 		{
 			System.out.println("\tEnter " + TeamMember[row] + "'s votes, points must add up to 100:");
@@ -91,19 +105,44 @@ class ProjectProp
 				{
 					continue;
 				}
-				System.out.print("\tEnter " + TeamMember[row] + "'s points for " + TeamMember[col] + ":");
-				Vote[row][col] = scan.nextInt();
+        boolean inputSuccessful = false;
+        while (!inputSuccessful)
+        {
+          System.out.print("\tEnter " + TeamMember[row] + "'s points for " + TeamMember[col] + ", in whole number: ");
+          try//ask the user to repeat until input is an integer
+          {
+            Vote[row][col] = scan.nextInt();
+            inputSuccessful = true;
+          }
+          catch (InputMismatchException e)
+          {
+            scan.nextLine();
+            System.out.println("\tYou didn't put in a number. Please try again.");
+          }
+          if (Vote[row][col] < 0 && inputSuccessful == true)//require votes to be positive
+          {
+            System.out.println("\tThis number can not be negative. Please try again.");
+            inputSuccessful = false;
+          }
+            else if (Vote[row][col] > 100 && inputSuccessful == true)//require vote to be <= 100
+            {
+                System.out.println("\tThis number can not be larger than 100. Please try again.");
+                inputSuccessful = false;                
+            }
+        }
 			}
 		}
-		sumRow(Vote, NumberOfMember);
+    }
+    while (sumRow(Vote, NumberOfMember));
 		return Vote;
 	}
 
 	// ------------------------------------------------------------------
 	// Declaration of sumRow() method to check if all votes add up to 100 
 	// ------------------------------------------------------------------
-	public int[] sumRow(int[][] Vote, int NumberOfMember) 
+	public boolean sumRow(int[][] Vote, int NumberOfMember) 
 	{
+    boolean badSum = false;
 		int sum[] = new int[NumberOfMember];
 		for (int i = 0; i < Vote.length; i++) 
 		{
@@ -113,16 +152,17 @@ class ProjectProp
 				total += Vote[i][j];
 				sum[i] = total;
 			}
-		}
+		}    
 		for (int i = 0; i < sum.length; i++) 
 		{
 			if (sum[i] != 100) 
 			{
 				System.out.println("\n\tPlease Make Sure the points add to 100!");
-				PropVotes();
-			}
+				badSum = true;
+        break;
+			}      
 		}
-		return sum;
+    return badSum;
 	}
 
 	// --------------------------------------------------------------------
@@ -158,3 +198,5 @@ class ProjectProp
 		return Vote;
 	}
 }
+
+
