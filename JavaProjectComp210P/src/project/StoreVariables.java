@@ -16,4 +16,8 @@ public void setLine(String aLine)
 	line = aLine;
 }
 
+public String getLine()
+{
+	return line;
+}
 }
