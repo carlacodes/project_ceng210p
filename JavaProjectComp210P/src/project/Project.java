@@ -22,11 +22,13 @@ import java.text.DecimalFormat; //Importing the decimal tool
 public class Project // Class that holds menu functionality of programme
 {
 	ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();
+	ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>();
 	private static int i = 0;
 
 	public static void main(String[] args) {
 		Project run = new Project();
 		run.StartMenu();
+		
 
 	}
 
@@ -51,9 +53,10 @@ public class Project // Class that holds menu functionality of programme
 
 	public void StartMenu() {
 		Scanner scan = new Scanner(System.in);
-		ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();// Create a list with variable size that is
+		//ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();// Create a list with variable size that is
 																			// capable of incorporating extra projects,
 																			// allow multiple projects
+		
 		System.out.println();
 		System.out.print("\nWelcome to Splitit ");
 		do {
@@ -67,7 +70,7 @@ public class Project // Class that holds menu functionality of programme
 	}
 
 	private void importResults() {
-		ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>();
+		
 		Scanner inputStream = null;
 		try {
 			inputStream = new Scanner(new FileReader("results.txt"));
@@ -182,7 +185,24 @@ public class Project // Class that holds menu functionality of programme
 	public void ShowProject() {
 		CorrectInput = true;
 		ShowMenu = true;
+		boolean inputCorrect;
+		System.out.print("\tEnter the Project Name: ");
+		String userinput = scan.nextLine();
+		
+		for (int i = 0; i < importedProject.size(); i++) {
+			
+			importedProject.get(i).getImportedComponents();
 
+			if (userinput.equals(importedProject.get(i).getImportedProjectName())) {
+				inputCorrect = true;
+				System.out.println("\tThere are "
+						+ ProjectList.get(i).getNumberOfMember(importedProject.get(i).getImportedNumberOfMember()) + " member(s)");
+				importedProject.get(i).setImportedVotes();
+				
+				break;
+			}
+		}
+		
 	}
 
 	// ----------------------------------------------
