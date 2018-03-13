@@ -148,4 +148,8 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		return SubVoteArray;
 	}
 
+	//Next: Remove the first assigner name from each sub string
+	//Then: create the scanning mechanism to compare the team member matrix with the elements in the removed assign
+	//then: if this a match, take the i+1 element and put it into the FINAL votes matrix
+	//Also need to add a try/catch so the user CANNOT add integers like 100 as member names
 }
