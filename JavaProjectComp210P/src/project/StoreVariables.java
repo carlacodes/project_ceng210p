@@ -10,7 +10,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	private String[] ImportedTeamMember;
 	private int[][] Votes;
 	private String[] EverythingArray;
-	private String[][] SubVoteArray;
+	private String[][] SubVoteArray, newSubVoteArray;
 	private String[] TeamMemberContent;
 	private double[] Score;
 	private int i;
@@ -117,12 +117,12 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		}
 		System.out.println("i2''' = " + i);
 		CreateSubString1(TeamMemberContent, aImportedNumberOfMember);
-
+		CreateSubString2(SubVoteArray,aImportedNumberOfMember);
 		return TeamMemberContent;
 	}
 
 	private String[][] CreateSubString1(String[] aTeamMemberContent, int oneImportedNumberOfMember) {
-		String[][] SubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1) + 1];
+		SubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1) + 1];
 		System.out.println(Arrays.toString(aTeamMemberContent));
 		int inner = 0;
 		for (int outer = 0; outer < (oneImportedNumberOfMember); outer++) {
@@ -146,6 +146,19 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		System.out.println(Arrays.deepToString(SubVoteArray));
 
 		return SubVoteArray;
+	}
+	
+	private String[][] CreateSubString2(String[][] aSubVoteArray, int oneImportedNumberOfMember)
+	{
+		newSubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1)];
+		for (int outer = 0; outer < (oneImportedNumberOfMember); outer++) {
+			for (int inner = 0; inner <2*(oneImportedNumberOfMember - 1); inner++)
+			{
+				newSubVoteArray[outer][inner] = aSubVoteArray[outer][inner+1];						
+			}
+		}
+		System.out.println(Arrays.deepToString(newSubVoteArray));
+		return newSubVoteArray;
 	}
 
 	//Next: Remove the first assigner name from each sub string
