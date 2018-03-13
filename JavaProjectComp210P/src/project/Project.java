@@ -23,11 +23,12 @@ public class Project // Class that holds menu functionality of programme
 {
 	ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();
 	ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>();
-	private static int i = 0;
+	private int i = 0;
 
 	public static void main(String[] args) {
 		Project run = new Project();
 		run.StartMenu();
+		
 		
 
 	}
@@ -52,6 +53,7 @@ public class Project // Class that holds menu functionality of programme
 	// ------------------------------------------------------------------------
 
 	public void StartMenu() {
+		
 		Scanner scan = new Scanner(System.in);
 		//ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();// Create a list with variable size that is
 																			// capable of incorporating extra projects,
@@ -61,7 +63,7 @@ public class Project // Class that holds menu functionality of programme
 		System.out.print("\nWelcome to Splitit ");
 		do {
 			printMenu();
-			importResults();
+			
 			char input = scan.next().charAt(0); // Asking user to input a character
 			option = Character.toString(input); // Converting from characters to string
 			checkInput(option);
@@ -87,6 +89,7 @@ public class Project // Class that holds menu functionality of programme
 			System.out.println(importedProject.get(linecounter).getLine());
 			linecounter++;
 		}
+		
 		// for line=0 to end{
 		// while has next line{
 
@@ -106,7 +109,7 @@ public class Project // Class that holds menu functionality of programme
 		// votes and names will be in storevariables
 		// now storevaribles is the basic read/write and has
 		// later can try to make private class and use extend
-
+		importedProject.get(i).ImportComponents();
 	}
 
 	// ----------------------------------------------
@@ -188,16 +191,25 @@ public class Project // Class that holds menu functionality of programme
 		boolean inputCorrect;
 		System.out.print("\tEnter the Project Name: ");
 		String userinput = scan.nextLine();
+		importResults();
 		
 		for (int i = 0; i < importedProject.size(); i++) {
 			
-			importedProject.get(i).getImportedComponents();
+
+			//importedProject.get(i).ImportComponents();
+			//importedProject.get(i).setImportedVotes();
+		
 
 			if (userinput.equals(importedProject.get(i).getImportedProjectName())) {
 				inputCorrect = true;
+				
 				System.out.println("\tThere are "
 						+ ProjectList.get(i).getNumberOfMember(importedProject.get(i).getImportedNumberOfMember()) + " member(s)");
-				importedProject.get(i).setImportedVotes();
+				
+				importedProject.get(i).setImportedNumberOfMember();
+				importedProject.get(i).ImportComponents();
+				//importedProject.get(i).initializeVotes(null, i, i);
+				//importedProject.get(i).setImportedVotes();
 				
 				break;
 			}
@@ -320,3 +332,5 @@ public class Project // Class that holds menu functionality of programme
 		return TeamMember[index - 1];
 	}
 }
+
+
