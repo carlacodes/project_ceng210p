@@ -63,7 +63,7 @@ public class Project // Class that holds menu functionality of programme
 		System.out.print("\nWelcome to Splitit ");
 		do {
 			printMenu();
-			
+			importResults();
 			char input = scan.next().charAt(0); // Asking user to input a character
 			option = Character.toString(input); // Converting from characters to string
 			checkInput(option);
@@ -107,9 +107,12 @@ public class Project // Class that holds menu functionality of programme
 
 		// FOR STOREVARIABLES:
 		// votes and names will be in storevariables
-		// now storevaribles is the basic read/write and has
+		// now storevariables is the basic read/write and has
 		// later can try to make private class and use extend
-		importedProject.get(i).ImportComponents();
+		for(int runtime=0; runtime<linecounter; runtime++) {
+		importedProject.get(runtime).ImportComponents();
+		
+		}
 	}
 
 	// ----------------------------------------------
@@ -191,11 +194,10 @@ public class Project // Class that holds menu functionality of programme
 		boolean inputCorrect;
 		System.out.print("\tEnter the Project Name: ");
 		String userinput = scan.nextLine();
-		importResults();
+		
 		
 		for (int i = 0; i < importedProject.size(); i++) {
 			
-
 			//importedProject.get(i).ImportComponents();
 			//importedProject.get(i).setImportedVotes();
 		
