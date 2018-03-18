@@ -14,6 +14,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	private String[] TeamMemberContent;
 	private double[] Score;
 	private int i;
+	private int[][] FinalVotes;
 
 	// next line string-1 =total string
 	// first int: Number
@@ -46,7 +47,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		}
 	}
 
-	public void ImportComponents() {
+	public int[][] ImportComponents() {
 		i = 0;
 		EverythingArray = line.split(",");
 		ImportedProjectName = EverythingArray[i];
@@ -66,6 +67,9 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		System.out.println("i1 = " + i);
 		// for ()
 		setImportedVotes(ImportedNumberOfMember);
+		CreateSortedVotesMatrix(newSubVoteArray, ImportedTeamMember, ImportedNumberOfMember);
+		System.out.print(Arrays.deepToString(FinalVotes));
+		return FinalVotes;
 
 	}
 
@@ -158,7 +162,40 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 			}
 		}
 		System.out.println(Arrays.deepToString(newSubVoteArray));
+		
 		return newSubVoteArray;
+	}
+	
+	private int[][] CreateSortedVotesMatrix(String[][] onenewSubVoteArray, String[] oneImportedTeamMember, int oneImportedNumberOfMember){
+		
+		initalizetoZero(oneImportedNumberOfMember);
+		for (int counter=0; counter < oneImportedNumberOfMember; counter++) {
+		
+			for (int counted=0; counted<onenewSubVoteArray[counter].length; counted++) {
+				for (int membercounter=0; membercounter<oneImportedNumberOfMember; membercounter++){
+					if(oneImportedTeamMember[membercounter].equals(onenewSubVoteArray[counter][counted])){
+						FinalVotes[counter][membercounter] = Integer.parseInt(onenewSubVoteArray[counter][counted+1]);					
+					}
+					else {
+						continue;
+					}
+				}
+				
+			}
+			
+		}
+				
+		return FinalVotes;
+	}
+
+	private int[][] initalizetoZero(int anImportedNumberOfMember) {
+		FinalVotes= new int[anImportedNumberOfMember][anImportedNumberOfMember];
+		for (int outer = 0; outer < anImportedNumberOfMember; outer ++) {
+			for (int inner = 0; inner <anImportedNumberOfMember; inner ++) {
+				FinalVotes[outer][inner] = 0;
+			}
+		}
+		return FinalVotes;
 	}
 
 	//Next: Remove the first assigner name from each sub string
