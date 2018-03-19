@@ -212,7 +212,7 @@ public class Project // Class that holds menu functionality of programme
 				importedProject.get(i).ImportComponents();
 				//importedProject.get(i).initializeVotes(null, i, i);
 				//importedProject.get(i).setImportedVotes();
-				
+				importedProject.get(i).CreateRatioMatrix(importedProject.get(i).getFinalVotes());
 				break;
 			}
 		}

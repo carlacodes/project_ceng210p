@@ -15,6 +15,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	private double[] Score;
 	private int i;
 	private int[][] FinalVotes;
+	private double[][] RatioVotes;
 
 	// next line string-1 =total string
 	// first int: Number
@@ -69,6 +70,12 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		setImportedVotes(ImportedNumberOfMember);
 		CreateSortedVotesMatrix(newSubVoteArray, ImportedTeamMember, ImportedNumberOfMember);
 		System.out.print(Arrays.deepToString(FinalVotes));
+		if(ImportedNumberOfMember==3) {
+			CreateRatioMatrix(FinalVotes);
+		}
+		else {
+			System.out.println("Cannot calculate. Current Project Doesn't have 3 Members.");
+		}
 		return FinalVotes;
 
 	}
@@ -122,6 +129,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		System.out.println("i2''' = " + i);
 		CreateSubString1(TeamMemberContent, aImportedNumberOfMember);
 		CreateSubString2(SubVoteArray,aImportedNumberOfMember);
+		
 		return TeamMemberContent;
 	}
 
@@ -129,12 +137,11 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		SubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1) + 1];
 		System.out.println(Arrays.toString(aTeamMemberContent));
 		int inner = 0;
-		for (int outer = 0; outer < (oneImportedNumberOfMember); outer++) {
+		for (int outer = 0; outer < oneImportedNumberOfMember; outer++) {
 			System.out.println("outer change");
 			System.out.println(outer);
 
-			for (int j = 0; inner < (outer * 2 * (oneImportedNumberOfMember - 1) + 1
-					+ 2 * (oneImportedNumberOfMember - 1)); j++, inner++) {
+			for (int j = 0; j < 2 * (oneImportedNumberOfMember - 1) + 1; j++, inner++) {
 
 				System.out.println("j= " + j);
 				System.out.println("inner= " + inner);
@@ -143,15 +150,19 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				// System.out.println("test"+Arrays.toString(aTeamMemberContent));
 			}
 		}
-		inner++;
-		SubVoteArray[oneImportedNumberOfMember - 1][2 * (oneImportedNumberOfMember - 1)] = aTeamMemberContent[inner
-				- 1];
+		//inner++;
+		//SubVoteArray[oneImportedNumberOfMember - 1][2 * (oneImportedNumberOfMember - 1)] = aTeamMemberContent[inner
+		//		- 1];
 
 		System.out.println(Arrays.deepToString(SubVoteArray));
 
 		return SubVoteArray;
 	}
-	
+
+		//inner++;
+		//SubVoteArray[oneImportedNumberOfMember - 1][2 * (oneImportedNumberOfMember - 1)] = aTeamMemberContent[inner- 1];
+
+		 
 	private String[][] CreateSubString2(String[][] aSubVoteArray, int oneImportedNumberOfMember)
 	{
 		newSubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1)];
@@ -187,6 +198,10 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				
 		return FinalVotes;
 	}
+	
+	public int[][] getFinalVotes(){
+		return FinalVotes;
+	}
 
 	private int[][] initalizetoZero(int anImportedNumberOfMember) {
 		FinalVotes= new int[anImportedNumberOfMember][anImportedNumberOfMember];
@@ -196,6 +211,27 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 			}
 		}
 		return FinalVotes;
+	}
+	
+	public double[][] CreateRatioMatrix(int[][] aFinalVotes){
+		initalizetoOne(ImportedNumberOfMember);
+		for (int outer = 0; outer < ImportedNumberOfMember; outer ++) {
+			for (int inner = 0; inner <ImportedNumberOfMember; inner ++) {
+				RatioVotes[outer][inner] = (double)FinalVotes[outer][inner] / (double)(100 - FinalVotes[outer][inner]);
+			}
+		}		
+		return RatioVotes;
+		
+	}
+	
+	private double[][] initalizetoOne(int anImportedNumberOfMember) {
+		RatioVotes= new double[anImportedNumberOfMember][anImportedNumberOfMember];
+		for (int outer = 0; outer < anImportedNumberOfMember; outer ++) {
+			for (int inner = 0; inner <anImportedNumberOfMember; inner ++) {
+				RatioVotes[outer][inner] = 1;
+			}
+		}
+		return RatioVotes;
 	}
 
 	//Next: Remove the first assigner name from each sub string
