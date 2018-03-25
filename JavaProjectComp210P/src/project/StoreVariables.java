@@ -304,6 +304,23 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		System.out.println(Arrays.deepToString(RatioVotes));
 		return RatioVotes;
 	}
+	
+	public void PrintFinalResults() {
+		for (int outer = 0; outer < ImportedNumberOfMember; outer ++) {
+			System.out.println("\t" + ImportedTeamMember[outer] + ":\t" +IntScores[outer]);
+		}
+	}
+	
+	public int[] getIntScores()
+	{
+		return IntScores;
+	}
+	
+	public String[] getImportedTeamMember()
+	{
+		return ImportedTeamMember;
+	}
+
 
 	//Next: Remove the first assigner name from each sub string
 	//Then: create the scanning mechanism to compare the team member matrix with the elements in the removed assign

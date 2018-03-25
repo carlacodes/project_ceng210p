@@ -21,8 +21,8 @@ import java.text.DecimalFormat; //Importing the decimal tool
 
 public class Project // Class that holds menu functionality of programme
 {
-	ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();
-	ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>();
+	ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>(); //This arraylist class for entering voter data 
+	ArrayList<StoreVariables> importedProject = new ArrayList<StoreVariables>(); //This arraylist class is for importing previously entered user data
 	private int i = 0;
 
 	public static void main(String[] args) {
@@ -109,8 +109,7 @@ public class Project // Class that holds menu functionality of programme
 		// now storevariables is the basic read/write and has
 		// later can try to make private class and use extend
 		for(int runtime=0; runtime<linecounter; runtime++) {
-		importedProject.get(runtime).ImportComponents();
-		
+		importedProject.get(runtime).ImportComponents();		
 		}
 	}
 
@@ -189,7 +188,7 @@ public class Project // Class that holds menu functionality of programme
 	// ----------------------------------------------
 	public void ShowProject() {
 		CorrectInput = true;
-		ShowMenu = true;
+		
 		boolean inputCorrect;
 		System.out.print("\tEnter the Project Name: ");
 		String userinput = scan.nextLine();
@@ -202,18 +201,25 @@ public class Project // Class that holds menu functionality of programme
 		
 
 			if (userinput.equals(importedProject.get(i).getImportedProjectName())) {
-				inputCorrect = true;
-				
+				inputCorrect = true;				
 				System.out.println("\tThere are "
-						+ ProjectList.get(i).getNumberOfMember(importedProject.get(i).getImportedNumberOfMember()) + " member(s)");
+						+ importedProject.get(i).getImportedNumberOfMember() + " member(s)");
 				
-				importedProject.get(i).setImportedNumberOfMember();
-				importedProject.get(i).ImportComponents();
-				//importedProject.get(i).initializeVotes(null, i, i);
-				//importedProject.get(i).setImportedVotes();
-				importedProject.get(i).CreateRatioMatrix(importedProject.get(i).getFinalVotes());
+				System.out.println("The point allocation based on votes is: \n");		
+			
+				importedProject.get(i).PrintFinalResults();
+				System.out.println("Press <Enter> to return to the main menu: ");
+				scan.nextLine();
+				ShowMenu = true;
 				break;
+				
 			}
+			else
+			{
+				System.out.println("No project found, please choose an option again. ");
+				ShowMenu = true;
+			}
+			
 		}
 		
 	}
