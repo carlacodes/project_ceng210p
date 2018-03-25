@@ -16,6 +16,9 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	private int i;
 	private int[][] FinalVotes;
 	private double[][] RatioVotes;
+	private double[] Scores;
+	private double[] ScoresDenominator;
+	private int[] IntScores;
 
 	// next line string-1 =total string
 	// first int: Number
@@ -214,23 +217,91 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	}
 	
 	public double[][] CreateRatioMatrix(int[][] aFinalVotes){
+		RatioVotes= new double[ImportedNumberOfMember][ImportedNumberOfMember];
 		initalizetoOne(ImportedNumberOfMember);
 		for (int outer = 0; outer < ImportedNumberOfMember; outer ++) {
 			for (int inner = 0; inner <ImportedNumberOfMember; inner ++) {
+				if (outer==inner) {
+					continue;
+				}	
 				RatioVotes[outer][inner] = (double)FinalVotes[outer][inner] / (double)(100 - FinalVotes[outer][inner]);
+				
 			}
-		}		
+			
+		}
+		System.out.println(Arrays.deepToString(RatioVotes));
+		MakeScoreDenominator(RatioVotes);
 		return RatioVotes;
 		
 	}
 	
+	public double[] MakeScoreDenominator(double[][] aRatioVotes){	
+		ScoresDenominator=new double[ImportedNumberOfMember];
+		
+		for (int i=0; i<ImportedNumberOfMember; i++) {
+			for (int counterIndex = 0; counterIndex < ImportedNumberOfMember; counterIndex++)
+			{
+				if (counterIndex == i)
+				{
+					ScoresDenominator[i]++;
+				}
+				else
+				{
+					for (int countedIndex=0; countedIndex < ImportedNumberOfMember; countedIndex ++)
+					{
+						if (i==countedIndex)
+						{
+							continue;
+						}
+						else
+						{
+							ScoresDenominator[i]+=aRatioVotes[counterIndex][countedIndex];
+						}
+					}
+				}
+			}		
+		}
+		System.out.println(Arrays.toString(ScoresDenominator));
+		MakeFinalScore(ScoresDenominator);
+		return ScoresDenominator;
+		
+	}
+	
+	public double[] MakeFinalScore(double[] aScoresDenominator){	
+		Scores = new double[ImportedNumberOfMember];
+		for (int outer = 0; outer < ImportedNumberOfMember; outer ++) {
+			
+				Scores[outer]=(100/ScoresDenominator[outer]);
+					
+		}
+		System.out.println(Arrays.toString(Scores));
+		MakeScoresInt(Scores);
+		return Scores;
+		
+	}
+	
+	public int[] MakeScoresInt(double[] aScores){
+		IntScores= new int[ImportedNumberOfMember];
+		for (int outer = 0; outer < ImportedNumberOfMember; outer ++) {
+			
+				IntScores[outer]=(int) Math.round(Scores[outer]);
+					
+		}
+		System.out.println(Arrays.toString(IntScores));
+		
+		return IntScores;
+		
+	}
+	
 	private double[][] initalizetoOne(int anImportedNumberOfMember) {
-		RatioVotes= new double[anImportedNumberOfMember][anImportedNumberOfMember];
+		
 		for (int outer = 0; outer < anImportedNumberOfMember; outer ++) {
 			for (int inner = 0; inner <anImportedNumberOfMember; inner ++) {
-				RatioVotes[outer][inner] = 1;
+				RatioVotes[outer][inner] = 0;
+				
 			}
 		}
+		System.out.println(Arrays.deepToString(RatioVotes));
 		return RatioVotes;
 	}
 

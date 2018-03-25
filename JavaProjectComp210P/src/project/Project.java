@@ -58,7 +58,6 @@ public class Project // Class that holds menu functionality of programme
 		//ArrayList<ProjectProp> ProjectList = new ArrayList<ProjectProp>();// Create a list with variable size that is
 																			// capable of incorporating extra projects,
 																			// allow multiple projects
-		
 		System.out.println();
 		System.out.print("\nWelcome to Splitit ");
 		do {
