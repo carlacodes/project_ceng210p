@@ -23,7 +23,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	// next line string-1 =total string
 	// first int: Number
 	// scan next string: project name
-	// Scan Number of memmember strings after: TeamMember
+	// Scan Number of member strings after: TeamMember
 	// s
 	public void setLine(String aLine) {
 		line = aLine;
@@ -64,27 +64,22 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		ImportedTeamMember = new String[ImportedNumberOfMember];
 		for (int MemberCounter = 0; i < ImportedNumberOfMember + 2; i++, MemberCounter++) {
 			ImportedTeamMember[MemberCounter] = EverythingArray[i];
-			System.out.println(ImportedTeamMember[MemberCounter]);
+			
 		}
-		System.out.println(ImportedProjectName);
-		System.out.println(ImportedNumberOfMember);
-		System.out.println("i1 = " + i);
+		
 		// for ()
 		setImportedVotes(ImportedNumberOfMember);
 		CreateSortedVotesMatrix(newSubVoteArray, ImportedTeamMember, ImportedNumberOfMember);
-		System.out.print(Arrays.deepToString(FinalVotes));
+		
 		if(ImportedNumberOfMember==3) {
 			CreateRatioMatrix(FinalVotes);
 		}
-		else {
-			System.out.println("Cannot calculate. Current Project Doesn't have 3 Members.");
-		}
+		
 		return FinalVotes;
 
 	}
 
-	// NEED METHOD TO EXTRACT EACH COMPONENT
-	// NEED METHOD TO RETURN EACH COMPONENT
+	
 
 	public int[][] ReturnMemberVotes() {
 		// return each person's scores
@@ -118,9 +113,9 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 	}
 
 	public String[] setImportedVotes(int aImportedNumberOfMember) {
-		System.out.println("i2 = " + i);
+		
 		initializeVotes(SubVoteArray, aImportedNumberOfMember, aImportedNumberOfMember);
-		System.out.println("i2'' = " + i);
+		
 
 		// System.out.print(Arrays.deepToString(SubVoteArray));
 		i = 2 + aImportedNumberOfMember;
@@ -129,7 +124,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 			TeamMemberContent[placeholder] = EverythingArray[i];
 
 		}
-		System.out.println("i2''' = " + i);
+		
 		CreateSubString1(TeamMemberContent, aImportedNumberOfMember);
 		CreateSubString2(SubVoteArray,aImportedNumberOfMember);
 		
@@ -138,17 +133,14 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 
 	private String[][] CreateSubString1(String[] aTeamMemberContent, int oneImportedNumberOfMember) {
 		SubVoteArray = new String[oneImportedNumberOfMember][2 * (oneImportedNumberOfMember - 1) + 1];
-		System.out.println(Arrays.toString(aTeamMemberContent));
+		
 		int inner = 0;
 		for (int outer = 0; outer < oneImportedNumberOfMember; outer++) {
-			System.out.println("outer change");
-			System.out.println(outer);
+			
 
 			for (int j = 0; j < 2 * (oneImportedNumberOfMember - 1) + 1; j++, inner++) {
 
-				System.out.println("j= " + j);
-				System.out.println("inner= " + inner);
-				System.out.println(aTeamMemberContent[inner]);
+				
 				SubVoteArray[outer][j] = aTeamMemberContent[inner];
 				// System.out.println("test"+Arrays.toString(aTeamMemberContent));
 			}
@@ -157,8 +149,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 		//SubVoteArray[oneImportedNumberOfMember - 1][2 * (oneImportedNumberOfMember - 1)] = aTeamMemberContent[inner
 		//		- 1];
 
-		System.out.println(Arrays.deepToString(SubVoteArray));
-
+		
 		return SubVoteArray;
 	}
 
@@ -175,7 +166,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				newSubVoteArray[outer][inner] = aSubVoteArray[outer][inner+1];						
 			}
 		}
-		System.out.println(Arrays.deepToString(newSubVoteArray));
+		
 		
 		return newSubVoteArray;
 	}
@@ -229,7 +220,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 			}
 			
 		}
-		System.out.println(Arrays.deepToString(RatioVotes));
+		
 		MakeScoreDenominator(RatioVotes);
 		return RatioVotes;
 		
@@ -261,7 +252,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				}
 			}		
 		}
-		System.out.println(Arrays.toString(ScoresDenominator));
+		
 		MakeFinalScore(ScoresDenominator);
 		return ScoresDenominator;
 		
@@ -274,7 +265,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				Scores[outer]=(100/ScoresDenominator[outer]);
 					
 		}
-		System.out.println(Arrays.toString(Scores));
+		
 		MakeScoresInt(Scores);
 		return Scores;
 		
@@ -287,7 +278,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				IntScores[outer]=(int) Math.round(Scores[outer]);
 					
 		}
-		System.out.println(Arrays.toString(IntScores));
+		
 		
 		return IntScores;
 		
@@ -301,7 +292,7 @@ public class StoreVariables // This is class is to be used with ShowProject() me
 				
 			}
 		}
-		System.out.println(Arrays.deepToString(RatioVotes));
+		
 		return RatioVotes;
 	}
 	

@@ -85,29 +85,11 @@ public class Project // Class that holds menu functionality of programme
 			line = inputStream.nextLine();
 			line = line.substring(0, line.length() - 1);
 			importedProject.get(linecounter).setLine(line);
-			System.out.println(importedProject.get(linecounter).getLine());
+			
 			linecounter++;
 		}
 		
-		// for line=0 to end{
-		// while has next line{
-
-		// }
-
-		// }
-
-		// add element to list array
-		// repeat until line/file ends
-
-		// scan each line
-		// each line is a new element in this LISTARRAY
-
-		// each line is a new element in the fucking imported user data arraylist
-
-		// FOR STOREVARIABLES:
-		// votes and names will be in storevariables
-		// now storevariables is the basic read/write and has
-		// later can try to make private class and use extend
+	
 		for(int runtime=0; runtime<linecounter; runtime++) {
 		importedProject.get(runtime).ImportComponents();		
 		}
