@@ -59,10 +59,11 @@ public class Project // Class that holds menu functionality of programme
 																			// capable of incorporating extra projects,
 																			// allow multiple projects
 		System.out.println();
-		System.out.print("\nWelcome to Splitit ");
+		System.out.println("\nWelcome to Splitit ");
 		do {
-			printMenu();
+			
 			importResults();
+			printMenu();
 			char input = scan.next().charAt(0); // Asking user to input a character
 			option = Character.toString(input); // Converting from characters to string
 			checkInput(option);
@@ -73,6 +74,7 @@ public class Project // Class that holds menu functionality of programme
 	private void importResults() {
 		
 		Scanner inputStream = null;
+		try {
 		try {
 			inputStream = new Scanner(new FileReader("results.txt"));
 		} catch (IOException e) {
@@ -92,6 +94,11 @@ public class Project // Class that holds menu functionality of programme
 	
 		for(int runtime=0; runtime<linecounter; runtime++) {
 		importedProject.get(runtime).ImportComponents();		
+		}
+		}
+		catch(Exception e) {
+			System.out.println("Error with reading results. File might have been compromised.");
+			ShowMenu=true;
 		}
 	}
 
@@ -172,8 +179,10 @@ public class Project // Class that holds menu functionality of programme
 		CorrectInput = true;
 		
 		boolean inputCorrect;
+		try {
 		System.out.println("\tThis will display project results from the previous run.");
 		System.out.print("\tEnter the Project Name: ");
+	
 		String userinput = scan.nextLine();
 		
 		boolean importedprojectfound=false;
@@ -217,7 +226,12 @@ public class Project // Class that holds menu functionality of programme
 			System.out.println("No project found, please choose an option again. ");
 			ShowMenu = true;			
 		}
-		
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error with calculation. Files might have been compromised.");
+			ShowMenu=true;
+		}
 	}
 
 	// ----------------------------------------------
