@@ -27,7 +27,9 @@ public class Project // Class that holds menu functionality of programme
 
 	public static void main(String[] args) {
 		Project run = new Project();
+		run.importResults();
 		run.StartMenu();
+		
 		
 		
 
@@ -62,7 +64,7 @@ public class Project // Class that holds menu functionality of programme
 		System.out.println("\nWelcome to Splitit ");
 		do {
 			
-			importResults();
+			
 			printMenu();
 			char input = scan.next().charAt(0); // Asking user to input a character
 			option = Character.toString(input); // Converting from characters to string
