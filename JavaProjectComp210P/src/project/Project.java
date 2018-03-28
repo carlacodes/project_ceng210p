@@ -172,6 +172,7 @@ public class Project // Class that holds menu functionality of programme
 		CorrectInput = true;
 		
 		boolean inputCorrect;
+		System.out.println("\tThis will display project results from the previous run.");
 		System.out.print("\tEnter the Project Name: ");
 		String userinput = scan.nextLine();
 		
@@ -275,7 +276,9 @@ public class Project // Class that holds menu functionality of programme
 			System.out.println("Error opening the file" + "results.txt");
 			System.exit(0);
 		}
+		try {
 		for (int i = 0; i < ProjectList.size(); i++) {
+			
 			outputStream.print(ProjectList.get(i).ProjectName + "," + ProjectList.get(i).NumberOfMember + ","); // Project
 																												// Name
 																												// and
@@ -325,9 +328,15 @@ public class Project // Class that holds menu functionality of programme
 			}
 			outputStream.println();
 		}
+		
 		outputStream.close();
 		System.out.println("\tGoodbye. ");
 		scan.close();
+		}
+		catch (Exception e) {
+			System.out.println("A project has not been fully declared. No votes will be printed out.");
+			System.exit(0);
+		}
 	}
 
 	// --------------------------------------------------------------------------------
