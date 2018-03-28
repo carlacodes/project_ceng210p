@@ -63,9 +63,20 @@ public class ProjectProp //Class that holds properties of each project
 																				// less than the total number of
 																				// members, the program will ask for the
 																				// user input
-		{
+		{ boolean memberformat=false;
+			while (memberformat==false) {
 			System.out.print("\tEnter the name of team member " + MemberCount + ": ");
 			TeamMember[MemberCount - 1] = scan.next();
+			try {
+				Double.parseDouble(TeamMember[MemberCount-1]);
+				System.out.println("You cannot enter in whole numbers as a member name. Please try again.");
+				memberformat=false;
+				
+			}
+			catch(Exception e) {
+				memberformat=true;
+				}
+			}
 		}
 		System.out.print("Press any key to return to the main menu: ");
 		String DummyInput = scan.next(); // This is a dummy variable where the input is never used again

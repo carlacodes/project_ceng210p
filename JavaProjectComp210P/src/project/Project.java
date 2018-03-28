@@ -193,33 +193,46 @@ public class Project // Class that holds menu functionality of programme
 		System.out.print("\tEnter the Project Name: ");
 		String userinput = scan.nextLine();
 		
-		
+		boolean importedprojectfound=false;
 		for (int i = 0; i < importedProject.size(); i++) {
 			
-			//importedProject.get(i).ImportComponents();
-			//importedProject.get(i).setImportedVotes();
+			
 		
-
 			if (userinput.equals(importedProject.get(i).getImportedProjectName())) {
 				inputCorrect = true;				
 				System.out.println("\tThere are "
 						+ importedProject.get(i).getImportedNumberOfMember() + " member(s)");
+				if (importedProject.get(i).getImportedNumberOfMember()==3) {
+					
+					System.out.println("The point allocation based on votes is: \n");		
+					
+					importedProject.get(i).PrintFinalResults();
+					System.out.println("Press <Enter> to return to the main menu: ");
+					scan.nextLine();
+					importedprojectfound=true;
+					ShowMenu = true;
+					break;
+					
+				}
 				
-				System.out.println("The point allocation based on votes is: \n");		
+				
+				else {
+					System.out.println("The calculation of scores only works with 3 members, please choose an option again.");
+					importedprojectfound=true;
+					ShowMenu = true;
+					break;
+				}
 			
-				importedProject.get(i).PrintFinalResults();
-				System.out.println("Press <Enter> to return to the main menu: ");
-				scan.nextLine();
-				ShowMenu = true;
-				break;
+				
 				
 			}
-			else
-			{
-				System.out.println("No project found, please choose an option again. ");
-				ShowMenu = true;
-			}
 			
+			
+		}
+		if (importedprojectfound==false)
+		{
+			System.out.println("No project found, please choose an option again. ");
+			ShowMenu = true;			
 		}
 		
 	}
@@ -231,6 +244,8 @@ public class Project // Class that holds menu functionality of programme
 		boolean inputCorrect = false;
 
 		while (inputCorrect == false) {
+			boolean projectfound=false;
+			
 			if (ProjectList.size() == 0) // Check if project has been created
 			{
 				System.out.println("\tPlease create a project.");
@@ -240,16 +255,25 @@ public class Project // Class that holds menu functionality of programme
 			String userinput = scan.nextLine();
 
 			for (int i = 0; i < ProjectList.size(); i++) {
+				
 
 				if (userinput.equals(ProjectList.get(i).ProjectName)) {
 					inputCorrect = true;
 					System.out.println("\tThere are "
 							+ ProjectList.get(i).getNumberOfMember(ProjectList.get(i).NumberOfMember) + " member(s)");
 					ProjectList.get(i).PropVotes();
+					projectfound=true;
 					break;
 				}
-
+				
+				
 			}
+			if(projectfound==false) {
+				System.out.println("\tThis project has not been created yet. Please create a project.");
+				inputCorrect=true;			
+				break;
+			}
+
 
 			// System.out.println("\tProject name cannot be found. Please re-enter project
 			// name. ");
