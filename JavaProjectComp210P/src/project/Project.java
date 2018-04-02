@@ -29,11 +29,7 @@ public class Project // Class that holds menu functionality of programme
 		Project run = new Project();
 		run.importResults();
 		run.StartMenu();
-		
-		
-		
-
-	}
+  }
 
 	private static String option; // Declaring the strings representing the menu option buttons
 	private static int NumberOfMember; // Entering the number of members
@@ -76,20 +72,15 @@ public class Project // Class that holds menu functionality of programme
 	private void importResults() {
 		
 		Scanner inputStream = null;
-		try {
-		try {
-			inputStream = new Scanner(new FileReader("results.txt"));
-		} catch (IOException e) {
-			System.exit(0);
-		}
+		try {		
+			inputStream = new Scanner(new FileReader("results.txt"));		
 		int linecounter = 0;
 		while (inputStream.hasNextLine()) {
 			importedProject.add(new StoreVariables());
 			String line = "hello";
 			line = inputStream.nextLine();
 			line = line.substring(0, line.length() - 1);
-			importedProject.get(linecounter).setLine(line);
-			
+			importedProject.get(linecounter).setLine(line);			
 			linecounter++;
 		}
 		
@@ -99,7 +90,7 @@ public class Project // Class that holds menu functionality of programme
 		}
 		}
 		catch(Exception e) {
-			System.out.println("Error with reading results. File might have been compromised.");
+			System.out.println("Error with reading results. File \"results.txt\" might have been compromised or not been created. Option \"S\" will not be available.");
 			ShowMenu=true;
 		}
 	}
@@ -370,5 +361,6 @@ public class Project // Class that holds menu functionality of programme
 		return TeamMember[index - 1];
 	}
 }
+
 
 
