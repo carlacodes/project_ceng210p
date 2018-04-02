@@ -81,7 +81,7 @@ public class ProjectProp //Class that holds properties of each project
 		System.out.print("Press any key to return to the main menu: ");
 		String DummyInput = scan.next(); // This is a dummy variable where the input is never used again
 		ShowMenu = true; // Irrespective of the input, the menu will be shown again by assigning this
-							// boolean to tr
+							// boolean to true
 		return TeamMember;
 	}
 
